@@ -1,0 +1,11 @@
+/* CSV */
+f2d7ee,d3bcc0,a5668b,69306d,0e103d
+
+/* Array */
+["f2d7ee","d3bcc0","a5668b","69306d","0e103d"]
+
+/* Object */
+{"Pink Lace":"f2d7ee","Silver Pink":"d3bcc0","Antique Fuchsia":"a5668b","Palatinate Purple":"69306d","Russian Violet":"0e103d"}
+
+/* Extended Array */
+[{"name":"Pink Lace","hex":"f2d7ee","rgb":[242,215,238],"cmyk":[0,11,2,5],"hsb":[309,11,95],"hsl":[309,51,90],"lab":[89,13,-8]},{"name":"Silver Pink","hex":"d3bcc0","rgb":[211,188,192],"cmyk":[0,11,9,17],"hsb":[350,11,83],"hsl":[350,21,78],"lab":[78,9,1]},{"name":"Antique Fuchsia","hex":"a5668b","rgb":[165,102,139],"cmyk":[0,38,16,35],"hsb":[325,38,65],"hsl":[325,26,52],"lab":[51,31,-10]},{"name":"Palatinate Purple","hex":"69306d","rgb":[105,48,109],"cmyk":[4,56,0,57],"hsb":[296,56,43],"hsl":[296,39,31],"lab":[30,35,-24]},{"name":"Russian Violet","hex":"0e103d","rgb":[14,16,61],"cmyk":[77,74,0,76],"hsb":[237,77,24],"hsl":[237,63,15],"lab":[7,17,-29]}]

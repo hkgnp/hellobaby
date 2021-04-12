@@ -1,0 +1,14 @@
+.navbar {
+  background-color: #0e103d;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  border: solid 1rem #f2d7ee !important;
+  border-radius: 25px !important;
+}
+
+.pagination > li.active {
+  background-color: #ffffff !important;
+}

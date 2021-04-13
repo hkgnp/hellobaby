@@ -27,9 +27,9 @@ const NavigationBar = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/allservices">
+              <NavLink href="/allproducts">
                 <i className="fas fa-list-alt" style={{ color: 'blue' }}></i>
-                &nbsp;Browse Services
+                &nbsp;Browse Products
               </NavLink>
             </NavItem>
             <NavItem>

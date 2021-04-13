@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'reactstrap';
 import NavigationBar from './components/views/NavigationBar';
-import AllServices from './components/views/AllServices';
+import AllProducts from './components/views/AllProducts';
 import About from './components/views/About';
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
       <Router>
         <NavigationBar />
         <Switch>
-          <Route exact path="/allservices" component={AllServices} />
+          <Route exact path="/allproducts" component={AllProducts} />
           <Route exact path="/about" component={About} />
         </Switch>
       </Router>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Context from '../../Context';
-import RenderServices from './RenderServices';
+import RenderProducts from './RenderProducts';
 import axios from 'axios';
 
-const AllServices = () => {
+const AllProducts = () => {
   // States
   // const [services] = useState({
   //   services: [
@@ -50,11 +50,11 @@ const AllServices = () => {
     <React.Fragment>
       <div style={{ height: '100vh' }}>
         <Context.Provider value={context}>
-          <RenderServices />
+          <RenderProducts />
         </Context.Provider>
       </div>
     </React.Fragment>
   );
 };
 
-export default AllServices;
+export default AllProducts;

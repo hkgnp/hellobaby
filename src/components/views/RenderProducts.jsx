@@ -11,7 +11,7 @@ import {
   Button,
 } from 'reactstrap';
 
-const RenderServices = () => {
+const RenderProducts = () => {
   const context = useContext(Context);
 
   // Render pages according to pagination settings
@@ -57,4 +57,4 @@ const RenderServices = () => {
   );
 };
 
-export default RenderServices;
+export default RenderProducts;

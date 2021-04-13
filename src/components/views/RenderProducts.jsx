@@ -21,8 +21,8 @@ const RenderProducts = () => {
     context.pageSize()
   );
 
-  const bookService = (e) => {
-    context.bookService(e.target.name);
+  const addToCart = (e) => {
+    context.addToCart(e.target.name);
   };
 
   return (
@@ -45,8 +45,8 @@ const RenderProducts = () => {
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </CardText>
-              <Button name={p.id} onClick={bookService}>
-                Book Service
+              <Button name={p.id} onClick={addToCart}>
+                Add To Cart
               </Button>
             </CardBody>
           </Card>

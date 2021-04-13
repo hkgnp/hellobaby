@@ -4,13 +4,6 @@ import RenderProducts from './RenderProducts';
 import axios from 'axios';
 
 const AllProducts = () => {
-  // States
-  // const [services] = useState({
-  //   services: [
-  //     { id: 1, name: 'Test 1' },
-  //     { id: 2, name: 'test 2' },
-  //   ],
-  // });
   const [products, setProducts] = useState([]);
   const [pageSize, setPageSize] = useState({ pageSize: 1 });
   const [currentPage, setCurrentPage] = useState({ currentPage: 1 });
@@ -41,8 +34,8 @@ const AllProducts = () => {
       setCurrentPage(page);
       window.scrollTo(0, 0);
     },
-    bookService: (serviceId) => {
-      alert('Booking ' + serviceId);
+    addToCart: (productId) => {
+      alert('Adding to Cart:  ' + productId);
     },
   };
 

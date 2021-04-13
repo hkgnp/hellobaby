@@ -6,15 +6,25 @@ import { Container, Row, Col } from 'reactstrap';
 import NavigationBar from './components/views/NavigationBar';
 import AllProducts from './components/views/AllProducts';
 import About from './components/views/About';
+import Login from './components/views/Login';
 
 const App = () => {
   return (
     <Container fluid={false}>
       <Router>
-        <NavigationBar />
+        <Row>
+          <Col>
+            <NavigationBar />
+          </Col>
+        </Row>
         <Switch>
-          <Route exact path="/allproducts" component={AllProducts} />
-          <Route exact path="/about" component={About} />
+          <Row>
+            <Col>
+              <Route exact path="/allproducts" component={AllProducts} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/login" component={Login} />
+            </Col>
+          </Row>
         </Switch>
       </Router>
     </Container>

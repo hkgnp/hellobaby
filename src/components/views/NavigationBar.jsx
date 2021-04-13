@@ -45,7 +45,11 @@ const NavigationBar = (props) => {
               </NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Placeholder for user information</NavbarText>
+          <NavbarText>
+            <a href="/users/logout" class="btn btn-danger btn-sm my-2 my-0">
+              Logout
+            </a>
+          </NavbarText>
         </Collapse>
       </Navbar>
     </React.Fragment>

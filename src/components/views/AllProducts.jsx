@@ -2,19 +2,22 @@ import React, { useState, useEffect } from 'react';
 import Context from '../../Context';
 import RenderProducts from './RenderProducts';
 import axios from 'axios';
+import loadingImage from '../../rolling.svg';
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
-  const [pageSize, setPageSize] = useState({ pageSize: 1 });
-  const [currentPage, setCurrentPage] = useState({ currentPage: 1 });
-  const [loaded, setLoaded] = useState({ loaded: false });
+  const [pageSize] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
         'https://5e88f940fe8d.ngrok.io/api/products'
       );
+      console.log(response.data);
       setProducts(response.data);
+      setLoaded(true);
     };
     fetch();
   }, []);
@@ -25,10 +28,10 @@ const AllProducts = () => {
       return products;
     },
     pageSize: () => {
-      return pageSize.pageSize;
+      return pageSize;
     },
     currentPage: () => {
-      return currentPage.currentPage;
+      return currentPage;
     },
     managePageChange: (page) => {
       setCurrentPage(page);
@@ -41,6 +44,13 @@ const AllProducts = () => {
 
   return (
     <React.Fragment>
+      {/* {loaded === false && (
+        <img
+          className="loading-image"
+          src={loadingImage}
+          alt="Loading spinner"
+        />
+      )} */}
       <div style={{ height: '100vh' }}>
         <Context.Provider value={context}>
           <RenderProducts />

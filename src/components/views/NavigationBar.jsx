@@ -46,7 +46,7 @@ const NavigationBar = (props) => {
             </NavItem>
           </Nav>
           <NavbarText>
-            <a href="/users/logout" class="btn btn-danger btn-sm my-2 my-0">
+            <a href="/users/logout" className="btn btn-danger btn-sm my-2 my-0">
               Logout
             </a>
           </NavbarText>

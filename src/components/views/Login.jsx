@@ -20,7 +20,7 @@ const Login = () => {
   return (
     <React.Fragment>
       <h1>User Login</h1>
-      <form method="POST">
+      <Form method="POST">
         <FormGroup>
           <Label for="email">Email</Label>
           <Input
@@ -48,7 +48,7 @@ const Login = () => {
         >
           Log In
         </Button>
-      </form>
+      </Form>
     </React.Fragment>
   );
 };

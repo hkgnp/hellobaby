@@ -16,14 +16,13 @@ const AllProducts = () => {
 
   // Load all posts
   useEffect(() => {
-    const fetch = async () => {
+    (async () => {
       const response = await axios.get(
         apiUrlContext.apiUrl() + '/api/products'
       );
       setProducts(response.data);
       setLoaded(true);
-    };
-    fetch();
+    })();
   }, [apiUrlContext]);
 
   //Context

@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
+import { withRouter } from 'react-router-dom';
 import { ApiUrlContext } from '../../Context';
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, FormGroup, Label, Input } from 'reactstrap';
 
-const Login = () => {
+const Login = (props) => {
   const context = useContext(ApiUrlContext);
   const [loginData, setLoginData] = useState({
     email: '',
@@ -18,43 +19,43 @@ const Login = () => {
 
   const handleSubmit = async () => {
     // Set api endpoint for user login
-    console.log(context.apiUrl);
+    const response = await axios.post(context.apiUrl() + '/api/users/login', {
+      email: loginData.email,
+      password: loginData.password,
+    });
+    localStorage.setItem('accessToken', response.data.accessToken);
+    localStorage.setItem('refreshToken', response.data.refreshToken);
+    props.history.push('/allproducts');
   };
 
   return (
     <React.Fragment>
       <h1>User Login</h1>
-      <Form method="POST">
-        <FormGroup>
-          <Label for="email">Email</Label>
-          <Input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Enter your email"
-            onChange={updateLoginForm}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">Password</Label>
-          <Input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Enter your password"
-            onChange={updateLoginForm}
-          />
-        </FormGroup>
-        <Button
-          className="btn btn-primary"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Log In
-        </Button>
-      </Form>
+      <FormGroup>
+        <Label for="email">Email</Label>
+        <Input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter your email"
+          onChange={updateLoginForm}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label for="password">Password</Label>
+        <Input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Enter your password"
+          onChange={updateLoginForm}
+        />
+      </FormGroup>
+      <Button className="btn btn-primary" type="submit" onClick={handleSubmit}>
+        Log In
+      </Button>
     </React.Fragment>
   );
 };
 
-export default Login;
+export default withRouter(Login);

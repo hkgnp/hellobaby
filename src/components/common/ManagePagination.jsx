@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import Context from '../../Context';
+import { ProductContext } from '../../Context';
 
 // Manages the pagination
 export const ManagePagination = () => {
-  const context = useContext(Context);
+  const context = useContext(ProductContext);
 
   // Destructure variables to calculate number of pages
   // const { pageSize, postsCount, managePageChange, currentPage } = context;

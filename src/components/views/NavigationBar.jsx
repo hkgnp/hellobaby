@@ -9,7 +9,6 @@ import {
   NavItem,
   NavLink,
   NavbarText,
-  Button,
 } from 'reactstrap';
 
 const NavigationBar = (props) => {

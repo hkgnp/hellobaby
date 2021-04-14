@@ -1,29 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import Context from '../../Context';
+import React, { useState, useEffect, useContext } from 'react';
+import { ApiUrlContext, ProductContext } from '../../Context';
 import RenderProducts from './RenderProducts';
 import axios from 'axios';
 import loadingImage from '../../rolling.svg';
 
 const AllProducts = () => {
+  // Base URL context
+  const apiUrlContext = useContext(ApiUrlContext);
+
+  // States
   const [products, setProducts] = useState([]);
   const [pageSize] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [loaded, setLoaded] = useState(false);
 
+  // Load all posts
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        'https://5e88f940fe8d.ngrok.io/api/products'
+        apiUrlContext.apiUrl() + '/api/products'
       );
-      console.log(response.data);
       setProducts(response.data);
       setLoaded(true);
     };
     fetch();
-  }, []);
+  }, [apiUrlContext]);
 
   //Context
-  const context = {
+  const productContext = {
     products: () => {
       return products;
     },
@@ -44,17 +48,17 @@ const AllProducts = () => {
 
   return (
     <React.Fragment>
-      {/* {loaded === false && (
+      {loaded === false && (
         <img
           className="loading-image"
           src={loadingImage}
           alt="Loading spinner"
         />
-      )} */}
+      )}
       <div style={{ height: '100vh' }}>
-        <Context.Provider value={context}>
+        <ProductContext.Provider value={productContext}>
           <RenderProducts />
-        </Context.Provider>
+        </ProductContext.Provider>
       </div>
     </React.Fragment>
   );

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Context from '../../Context';
+import { ProductContext } from '../../Context';
 import { Paginate, ManagePagination } from '../common/ManagePagination';
 import {
   Card,
@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 
 const RenderProducts = () => {
-  const context = useContext(Context);
+  const context = useContext(ProductContext);
 
   // Render pages according to pagination settings
   const allProducts = Paginate(

@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import React, { useState, useContext } from 'react';
+import { ApiUrlContext } from '../../Context';
+import axios from 'axios';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const Login = () => {
+  const context = useContext(ApiUrlContext);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -13,8 +16,9 @@ const Login = () => {
     setLoginData(clone);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Set api endpoint for user login
+    console.log(context.apiUrl);
   };
 
   return (

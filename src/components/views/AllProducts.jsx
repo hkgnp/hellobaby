@@ -7,8 +7,6 @@ import axios from 'axios';
 import loadingImage from '../../rolling.svg';
 
 const AllProducts = (props) => {
-  const BASE_URL = config.BASE_URL;
-
   // States
   const [products, setProducts] = useState([]);
   const [pageSize] = useState(5);
@@ -18,11 +16,11 @@ const AllProducts = (props) => {
   // Load all posts
   useEffect(() => {
     (async () => {
-      const response = await axios.get(BASE_URL + '/api/products');
+      const response = await axios.get(config.BASE_URL + '/api/products');
       setProducts(response.data);
       setLoaded(true);
     })();
-  }, [BASE_URL]);
+  }, []);
 
   //Context
   const productContext = {

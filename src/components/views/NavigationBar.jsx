@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
+  Col,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -10,15 +11,37 @@ import {
   NavLink,
   NavbarText,
 } from 'reactstrap';
+import { UserContext } from '../../Context';
+import { config } from '../../config';
+import axios from 'axios';
 
-const NavigationBar = (props) => {
+const NavigationBar = () => {
+  const userContext = useContext(UserContext);
+
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
+  const handleLogOut = async () => {
+    await axios.post(config.BASE_URL + '/api/users/logout', {
+      refreshToken: localStorage.getItem('refreshToken'),
+    });
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    window.location.href = '/allproducts';
+  };
+
+  const gotToken = () => {
+    if (localStorage.getItem('accessToken')) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
-    <React.Fragment>
+    <Col className="navdiv">
       <Navbar dark expand="lg">
-        <NavbarBrand href="/" style={{ color: '#ffffff', fontWeight: 'bold' }}>
+        <NavbarBrand href="/" style={{ fontWeight: 'bold' }}>
           <i className="fas fa-baby"></i>
           &nbsp;HelloBaby
         </NavbarBrand>
@@ -45,13 +68,31 @@ const NavigationBar = (props) => {
             </NavItem>
           </Nav>
           <NavbarText>
-            <a href="/login" className="btn btn-danger btn-sm my-2 my-0">
-              Login
-            </a>
+            {gotToken() || (
+              <a href="/login" className="btn btn-outline-dark btn-sm my-0">
+                <span className="text-dark">Login</span>
+              </a>
+            )}
+            {gotToken() && (
+              <React.Fragment>
+                <a className="mr-2" href="/cart">
+                  <i className="fas fa-shopping-cart"></i>
+                </a>
+                <button className="btn-outline-dark btn-sm my-0">
+                  {userContext.user().username}
+                </button>
+                <button
+                  className="btn-outline-dark btn-sm my-0"
+                  onClick={handleLogOut}
+                >
+                  Logout
+                </button>
+              </React.Fragment>
+            )}
           </NavbarText>
         </Collapse>
       </Navbar>
-    </React.Fragment>
+    </Col>
   );
 };
 

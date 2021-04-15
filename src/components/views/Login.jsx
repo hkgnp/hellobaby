@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Col, Button, FormGroup, Label, Input } from 'reactstrap';
 
 const Login = (props) => {
-  const BASE_URL = config.BASE_URL;
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -18,14 +17,19 @@ const Login = (props) => {
   };
 
   const handleSubmit = async () => {
-    // Set api endpoint for user login
-    const response = await axios.post(BASE_URL + '/api/users/login', {
-      email: loginData.email,
-      password: loginData.password,
-    });
-    localStorage.setItem('accessToken', response.data.accessToken);
-    localStorage.setItem('refreshToken', response.data.refreshToken);
-    props.history.push('/allproducts');
+    // Get access and refresh tokens
+    const tokenResponse = await axios.post(
+      config.BASE_URL + '/api/users/login',
+      {
+        email: loginData.email,
+        password: loginData.password,
+      }
+    );
+    localStorage.setItem('accessToken', tokenResponse.data.accessToken);
+    localStorage.setItem('refreshToken', tokenResponse.data.refreshToken);
+
+    // Redirect
+    window.location.href = '/allproducts';
   };
 
   return (

@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Col, Row, Button, Badge } from 'reactstrap';
 import { config } from '../../config';
+import { UserContext } from '../../Context';
 import loadingImage from '../../rolling.svg';
 
 const ProductDetails = (props) => {
-  const BASE_URL = config.BASE_URL;
+  const userContext = useContext(UserContext);
+
   const productId = window.location.href.substring(
     window.location.href.lastIndexOf('/') + 1
   );
@@ -14,25 +16,18 @@ const ProductDetails = (props) => {
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get(BASE_URL + '/api/products/' + productId);
+      const response = await axios.get(
+        config.BASE_URL + '/api/products/' + productId
+      );
       await setProduct(response.data);
       await setLoaded(true);
-      console.log(response.data);
     })();
-  }, [BASE_URL, productId]);
-
-  const userId = async () => {
-    const response = await axios.get(BASE_URL + '/api/users/profile', {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      },
-    });
-    return response.data.id;
-  };
+  }, [productId]);
 
   const addToCart = async () => {
-    const uId = await userId();
-    await axios.get(`${BASE_URL}/api/cart/add/${uId}/${productId}`);
+    await axios.get(
+      `${config.BASE_URL}/api/cart/add/${userContext.user().id}/${productId}`
+    );
     props.history.push('/allproducts');
   };
 
@@ -78,16 +73,16 @@ const ProductDetails = (props) => {
           </Row>
           <Row className="d-block p-3 mx-0 mb-2 bg-white">
             <p className="product-details-quick-info">
-              <i class="far fa-building"></i> Company: {product.company}
+              <i className="far fa-building"></i> Company: {product.company}
             </p>
             <p className="product-details-quick-info">
-              <i class="fas fa-shipping-fast"></i> Ships from:{' '}
+              <i className="fas fa-shipping-fast"></i> Ships from:{' '}
               {product.local === '1' ? 'Local' : 'Overseas'}
             </p>
             <p className="product-details-quick-info">
               {product.organic_natural === '1' ? (
                 <Badge>
-                  <i class="fas fa-seedling"></i> Organic/natural material
+                  <i className="fas fa-seedling"></i> Organic/natural material
                 </Badge>
               ) : (
                 ''

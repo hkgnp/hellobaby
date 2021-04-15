@@ -25,7 +25,12 @@ const RenderProducts = () => {
       </small>
       <div className="product-container">
         {allProducts.map((p) => (
-          <Card key={p.id} className="mb-2 d-flex">
+          <Card
+            key={p.id}
+            onClick={goToProduct}
+            value={p.id}
+            className="mb-2 d-flex"
+          >
             <CardImg
               top
               height="70%"

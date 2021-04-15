@@ -21,7 +21,7 @@ const RenderProducts = () => {
   return (
     <Col>
       <small className="text-muted">
-        Showing {allProducts.length} products
+        Showing {context.products().length} products
       </small>
       <div className="product-container">
         {allProducts.map((p) => (
@@ -36,14 +36,18 @@ const RenderProducts = () => {
               <CardText className="mt-2 mb-0">{p.name}</CardText>
               <CardText className="m-0 p-0">
                 {p.tags.map((t) => (
-                  <Badge key={t.id}>{t.tag_name}</Badge>
+                  <Badge style={{ backgroundColor: '#FF97B2' }} key={t.id}>
+                    {t.tag_name}
+                  </Badge>
                 ))}
               </CardText>
               <div className="d-flex justify-content-between">
                 <CardText>
                   <small className="text-muted"> {p.company}</small>
                 </CardText>
-                <CardText className="text-right">${p.cost}</CardText>
+                <CardText className="text-right" style={{ color: '#E1084F' }}>
+                  ${p.cost}
+                </CardText>
               </div>
             </CardBody>
           </Card>

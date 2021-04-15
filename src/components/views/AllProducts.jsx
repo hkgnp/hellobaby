@@ -10,7 +10,7 @@ const AllProducts = (props) => {
 
   // States
   const [products, setProducts] = useState([]);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [loaded, setLoaded] = useState(false);
 

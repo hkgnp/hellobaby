@@ -13,9 +13,13 @@ body {
 }
 
 .navbar {
-  background-color: #0e103d;
+  background-color: #1bbeb9;
   color: #ffffff;
   margin-bottom: 0.5rem;
+}
+
+.navbar a {
+  color: #ffffff !important;
 }
 
 .product-container {

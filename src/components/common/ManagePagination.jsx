@@ -10,6 +10,7 @@ export const ManagePagination = () => {
   // const { pageSize, postsCount, managePageChange, currentPage } = context;
 
   const numberofServices = context.products().length;
+
   // Calculate number of pages
   const pagesCount = Math.ceil(numberofServices / context.pageSize());
   let numberofPagesArray = [];
@@ -26,7 +27,7 @@ export const ManagePagination = () => {
       >
         <PaginationLink
           onClick={() => context.managePageChange(p)}
-          className="mb-4"
+          className="mb-4 btn-sm"
         >
           {p}
         </PaginationLink>

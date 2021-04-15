@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Col, Row, Button } from 'reactstrap';
+import { Col, Row, Button, Badge } from 'reactstrap';
 import { config } from '../../config';
 
 const ProductDetails = () => {
@@ -28,20 +28,29 @@ const ProductDetails = () => {
             className="image-details"
           />
           <h1>{product.name}</h1>
+          {product.tags.map((t) => (
+            <Badge style={{ backgroundColor: '#FF97B2' }} key={t.id}>
+              {t.tag_name}
+            </Badge>
+          ))}
           <h2 className="mt-0 mb-3" style={{ color: '#E1084F' }}>
             ${product.cost}
           </h2>
-          <Button className="mr-2">
+          <Button className="btn-sm mr-2">
+            {product.category.category_name}
+          </Button>
+          <Button className="btn-sm mr-2">
             <i className="fas fa-share-alt"></i>
           </Button>
-          <Button>Add To Cart</Button>
+          <Button className="btn-sm">Add To Cart</Button>
         </Col>
       </Row>
-      <Row className="p-3 mx-0 mb-2 bg-white">
-        <p style={{ margin: '0px' }}>
+      <Row className="d-block p-3 mx-0 mb-2 bg-white">
+        <p className="product-details-quick-info">Company: {product.company}</p>
+        <p className="product-details-quick-info">
           Ships from: {product.local === '1' ? 'Local' : 'Overseas'}
         </p>
-        <p style={{ margin: '0px' }}>
+        <p className="product-details-quick-info">
           Organic/natural materials:{' '}
           {product.organic_natural === '1' ? (
             <i className="fas fa-check-circle"></i>
@@ -49,7 +58,7 @@ const ProductDetails = () => {
             <i className="fas fa-times-circle"></i>
           )}
         </p>
-        <p style={{ margin: '0px' }}>
+        <p className="product-details-quick-info">
           {product.free_delivery === '1' ? 'Free Delivery' : ''}
         </p>
       </Row>

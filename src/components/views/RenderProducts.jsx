@@ -1,39 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { config } from '../../config';
+import React, { useContext } from 'react';
 import { ProductContext } from '../../Context';
 import { Paginate, ManagePagination } from '../common/ManagePagination';
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-} from 'reactstrap';
-import axios from 'axios';
+import { Card, CardImg, CardText, CardBody, Badge } from 'reactstrap';
 
 const RenderProducts = () => {
-  const BASE_URL = config.BASE_URL;
   const context = useContext(ProductContext);
-
-  const [username, setUsername] = useState('');
-  const [userId, setUserId] = useState('');
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-      (async () => {
-        const response = await axios.get(BASE_URL + '/api/users/profile', {
-          headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-          },
-        });
-        setUsername(response.data.username);
-        setUserId(response.data.id);
-      })();
-    }
-  }, [BASE_URL]);
 
   // Render pages according to pagination settings
   const allProducts = Paginate(
@@ -42,42 +13,33 @@ const RenderProducts = () => {
     context.pageSize()
   );
 
-  const addToCart = (e) => {
+  const goToProduct = (e) => {
     let productId = e.currentTarget.getAttribute('value');
-    console.log(
-      'ProductId is ' +
-        productId +
-        ' and User Details are ' +
-        userId +
-        '' +
-        username
-    );
-    context.addToCart(productId, username, userId);
+    context.goToProduct(productId);
   };
 
   return (
     <React.Fragment>
-      <div className="mb-3">
+      <div className="mb-1 d-flex">
         {allProducts.map((p) => (
-          <Card key={p.id}>
-            <CardBody onClick={addToCart} value={p.id}>
+          <Card key={p.id} className="mr-2 d-flex align-items-stretch">
+            <CardBody className="mb-3" onClick={goToProduct} value={p.id}>
               <CardImg
                 top
-                width="100%"
+                height="70%"
                 src={`${p.img_url}`}
                 alt="Card image cap"
               />
-              <CardTitle tag="h5">{p.name}</CardTitle>
-              <CardSubtitle tag="h6" className="mb-2 text-muted">
-                {p.description}
-              </CardSubtitle>
-              <CardText name={p.id}>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+              <CardText className="mt-2 mb-0">{p.name}</CardText>
+              <CardText className="m-0 p-0">
+                {p.tags.map((t) => (
+                  <Badge key={t.id}>{t.tag_name}</Badge>
+                ))}
               </CardText>
-              <Button name={p.id} onClick={addToCart}>
-                More
-              </Button>
+              <div className="d-flex justify-content-between">
+                <CardText className="text-muted">{p.company}</CardText>
+                <CardText className="text-right">${p.cost}</CardText>
+              </div>
             </CardBody>
           </Card>
         ))}

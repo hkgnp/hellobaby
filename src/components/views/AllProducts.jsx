@@ -5,11 +5,11 @@ import RenderProducts from './RenderProducts';
 import axios from 'axios';
 import loadingImage from '../../rolling.svg';
 
-const AllProducts = () => {
+const AllProducts = (props) => {
   const BASE_URL = config.BASE_URL;
   // States
   const [products, setProducts] = useState([]);
-  const [pageSize] = useState(1);
+  const [pageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [loaded, setLoaded] = useState(false);
 
@@ -20,7 +20,7 @@ const AllProducts = () => {
       setProducts(response.data);
       setLoaded(true);
     })();
-  });
+  }, [BASE_URL]);
 
   //Context
   const productContext = {
@@ -37,8 +37,9 @@ const AllProducts = () => {
       setCurrentPage(page);
       window.scrollTo(0, 0);
     },
-    addToCart: (productId, username, userId) => {
-      alert('Adding to Cart:  ' + productId + ' by ' + username + '' + userId);
+    goToProduct: (productId) => {
+      alert('Going to Product ID:  ' + productId);
+      props.history.push(`/product/${productId}`);
     },
   };
 

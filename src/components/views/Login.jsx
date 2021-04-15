@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { config } from '../../config';
 import axios from 'axios';
-import { Button, FormGroup, Label, Input } from 'reactstrap';
+import { Col, Button, FormGroup, Label, Input } from 'reactstrap';
 
 const Login = (props) => {
   const BASE_URL = config.BASE_URL;
@@ -29,7 +29,7 @@ const Login = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <Col>
       <h1>User Login</h1>
       <FormGroup>
         <Label for="email">Email</Label>
@@ -51,10 +51,10 @@ const Login = (props) => {
           onChange={updateLoginForm}
         />
       </FormGroup>
-      <Button className="btn btn-primary" type="submit" onClick={handleSubmit}>
+      <Button className="btn-sm" type="submit" onClick={handleSubmit}>
         Log In
       </Button>
-    </React.Fragment>
+    </Col>
   );
 };
 

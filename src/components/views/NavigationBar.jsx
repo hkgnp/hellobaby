@@ -45,8 +45,8 @@ const NavigationBar = (props) => {
             </NavItem>
           </Nav>
           <NavbarText>
-            <a href="/users/logout" className="btn btn-danger btn-sm my-2 my-0">
-              Logout
+            <a href="/login" className="btn btn-danger btn-sm my-2 my-0">
+              Login
             </a>
           </NavbarText>
         </Collapse>

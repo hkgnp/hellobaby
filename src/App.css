@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@200;300&display=swap');
+
 body {
   background-color: rgba(139, 139, 139, 0.1) !important;
+  font-family: 'Martel Sans', sans-serif !important;
+}
+
+body h1 {
+  color: #9d707e !important;
+  margin-top: 0.5rem;
 }
 
 .loading-image {

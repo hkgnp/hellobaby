@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Col } from 'reactstrap';
 import { config } from '../../config';
 import { ProductContext } from '../../Context';
 import RenderProducts from './RenderProducts';
@@ -39,24 +40,25 @@ const AllProducts = (props) => {
       window.scrollTo(0, 0);
     },
     goToProduct: (productId) => {
-      alert('Going to Product ID:  ' + productId);
       props.history.push(`/product/${productId}`);
     },
   };
 
   return (
-    <React.Fragment>
-      {loaded === false && (
-        <img
-          className="loading-image"
-          src={loadingImage}
-          alt="Loading spinner"
-        />
-      )}
+    <Col>
+      <div className="text-center">
+        {loaded === false && (
+          <img
+            className="loading-image"
+            src={loadingImage}
+            alt="Loading spinner"
+          />
+        )}
+      </div>
       <ProductContext.Provider value={productContext}>
-        <RenderProducts />
+        {loaded === true && <RenderProducts />}
       </ProductContext.Provider>
-    </React.Fragment>
+    </Col>
   );
 };
 

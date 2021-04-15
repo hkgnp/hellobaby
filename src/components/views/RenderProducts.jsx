@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ProductContext } from '../../Context';
 import { Paginate, ManagePagination } from '../common/ManagePagination';
-import { Col, Card, CardImg, CardText, CardBody, Badge } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, Badge } from 'reactstrap';
 
 const RenderProducts = () => {
   const context = useContext(ProductContext);
@@ -19,7 +19,7 @@ const RenderProducts = () => {
   };
 
   return (
-    <Col>
+    <React.Fragment>
       <small className="text-muted">
         Showing {context.products().length} products
       </small>
@@ -54,7 +54,7 @@ const RenderProducts = () => {
         ))}
       </div>
       <ManagePagination />
-    </Col>
+    </React.Fragment>
   );
 };
 

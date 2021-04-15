@@ -61,21 +61,29 @@ const ProductDetails = () => {
           </Row>
           <Row className="d-block p-3 mx-0 mb-2 bg-white">
             <p className="product-details-quick-info">
-              Company: {product.company}
+              <i class="far fa-building"></i> Company: {product.company}
             </p>
             <p className="product-details-quick-info">
-              Ships from: {product.local === '1' ? 'Local' : 'Overseas'}
+              <i class="fas fa-shipping-fast"></i> Ships from:{' '}
+              {product.local === '1' ? 'Local' : 'Overseas'}
             </p>
             <p className="product-details-quick-info">
-              Organic/natural materials:{' '}
               {product.organic_natural === '1' ? (
-                <i className="fas fa-check-circle"></i>
+                <Badge>
+                  <i class="fas fa-seedling"></i> Organic/natural material
+                </Badge>
               ) : (
-                <i className="fas fa-times-circle"></i>
+                ''
               )}
             </p>
             <p className="product-details-quick-info">
-              {product.free_delivery === '1' ? 'Free Delivery' : ''}
+              {product.free_delivery === '1' ? (
+                <Badge>
+                  <i class="far fa-star"></i> Free Delivery
+                </Badge>
+              ) : (
+                ''
+              )}
             </p>
           </Row>
           <Row className="p-3 mx-0 mb-2 bg-white d-block">

@@ -11,7 +11,7 @@ import ProductDetails from './components/views/ProductDetails';
 
 const App = () => {
   return (
-    <Container fluid={false}>
+    <Container fluid={true}>
       <Router>
         <NavigationBar />
         <Switch>

@@ -17,8 +17,8 @@ const Cart = () => {
         `${config.BASE_URL}/api/cart/${userContext.user().id}`
       );
       setCart(response.data);
-      setLoaded(true);
       console.log(response.data.allItems);
+      await setLoaded(true);
     })();
   }, [userContext]);
 
@@ -46,7 +46,7 @@ const Cart = () => {
           cart.allItems.map((p) => (
             <li key={p.products.id}>
               {p.products.name}, {p.quantity}, ${p.products.cost / 100}, $
-              {(p.products.cost / 100) * p.quantity}
+              {(p.products.cost / 100) * p.quantity.toFixed(2)}
             </li>
           ))}
         {loaded === true && `$${getTotalCost()}`}

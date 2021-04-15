@@ -4,7 +4,7 @@ import { Col, Row, Button, Badge } from 'reactstrap';
 import { config } from '../../config';
 import loadingImage from '../../rolling.svg';
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
   const BASE_URL = config.BASE_URL;
   const productId = window.location.href.substring(
     window.location.href.lastIndexOf('/') + 1
@@ -20,6 +20,21 @@ const ProductDetails = () => {
       console.log(response.data);
     })();
   }, [BASE_URL, productId]);
+
+  const userId = async () => {
+    const response = await axios.get(BASE_URL + '/api/users/profile', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+      },
+    });
+    return response.data.id;
+  };
+
+  const addToCart = async () => {
+    const uId = await userId();
+    await axios.get(`${BASE_URL}/api/cart/add/${uId}/${productId}`);
+    props.history.push('/allproducts');
+  };
 
   return (
     <Col>
@@ -56,7 +71,9 @@ const ProductDetails = () => {
               <Button className="btn-sm mr-2">
                 <i className="fas fa-share-alt"></i>
               </Button>
-              <Button className="btn-sm">Add To Cart</Button>
+              <Button className="btn-sm" onClick={addToCart}>
+                Add To Cart
+              </Button>
             </Col>
           </Row>
           <Row className="d-block p-3 mx-0 mb-2 bg-white">
@@ -79,7 +96,7 @@ const ProductDetails = () => {
             <p className="product-details-quick-info">
               {product.free_delivery === '1' ? (
                 <Badge>
-                  <i class="far fa-star"></i> Free Delivery
+                  <i className="far fa-star"></i> Free Delivery
                 </Badge>
               ) : (
                 ''
@@ -88,15 +105,15 @@ const ProductDetails = () => {
           </Row>
           <Row className="p-3 mx-0 mb-2 bg-white d-block">
             <h5>Description</h5>
-            <p>{product.description}</p>
+            <p className="mb-0">{product.description}</p>
           </Row>
           <Row className="p-3 mx-0 mb-2 bg-white d-block">
             <h5>Dimensions</h5>
-            <p>{product.size}</p>
+            <p className="mb-0">{product.size}</p>
           </Row>
           <Row className="p-3 mx-0 mb-2 bg-white d-block">
             <h5>Quantity Left</h5>
-            <p>{product.stock}</p>
+            <p className="mb-0">{product.stock}</p>
           </Row>
         </React.Fragment>
       )}

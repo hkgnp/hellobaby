@@ -8,6 +8,7 @@ import AllProducts from './components/views/AllProducts';
 import About from './components/views/About';
 import Login from './components/views/Login';
 import ProductDetails from './components/views/ProductDetails';
+import Footer from './components/views/Footer';
 
 const App = () => {
   return (
@@ -28,6 +29,9 @@ const App = () => {
             <Route exact path="/about" component={About} />
             <Route exact path="/login" component={Login} />
           </Switch>
+        </Row>
+        <Row>
+          <Footer />
         </Row>
       </Container>
     </Router>

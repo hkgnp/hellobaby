@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ProductContext } from '../../Context';
 import { Paginate, ManagePagination } from '../common/ManagePagination';
-import { Card, CardImg, CardText, CardBody, Badge } from 'reactstrap';
+import { Col, Card, CardImg, CardText, CardBody, Badge } from 'reactstrap';
 
 const RenderProducts = () => {
   const context = useContext(ProductContext);
@@ -19,10 +19,13 @@ const RenderProducts = () => {
   };
 
   return (
-    <React.Fragment>
-      <div className="mb-1 d-flex">
+    <Col>
+      <small className="text-muted">
+        Showing {allProducts.length} products
+      </small>
+      <div className="product-container">
         {allProducts.map((p) => (
-          <Card key={p.id} className="mr-2 d-flex align-items-stretch">
+          <Card key={p.id} className="mb-2 d-flex">
             <CardBody className="mb-3" onClick={goToProduct} value={p.id}>
               <CardImg
                 top
@@ -37,7 +40,9 @@ const RenderProducts = () => {
                 ))}
               </CardText>
               <div className="d-flex justify-content-between">
-                <CardText className="text-muted">{p.company}</CardText>
+                <CardText>
+                  <small className="text-muted"> {p.company}</small>
+                </CardText>
                 <CardText className="text-right">${p.cost}</CardText>
               </div>
             </CardBody>
@@ -45,7 +50,7 @@ const RenderProducts = () => {
         ))}
       </div>
       <ManagePagination />
-    </React.Fragment>
+    </Col>
   );
 };
 

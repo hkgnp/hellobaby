@@ -7,6 +7,7 @@ import loadingImage from '../../rolling.svg';
 
 const AllProducts = (props) => {
   const BASE_URL = config.BASE_URL;
+
   // States
   const [products, setProducts] = useState([]);
   const [pageSize] = useState(10);
@@ -52,11 +53,9 @@ const AllProducts = (props) => {
           alt="Loading spinner"
         />
       )}
-      <div style={{ height: '100vh' }}>
-        <ProductContext.Provider value={productContext}>
-          <RenderProducts />
-        </ProductContext.Provider>
-      </div>
+      <ProductContext.Provider value={productContext}>
+        <RenderProducts />
+      </ProductContext.Provider>
     </React.Fragment>
   );
 };

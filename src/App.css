@@ -1,3 +1,7 @@
+body {
+  background-color: rgba(139, 139, 139, 0.1) !important;
+}
+
 .navbar {
   background-color: #0e103d;
   color: #ffffff;
@@ -5,12 +9,19 @@
 }
 
 .card {
-  border: solid 1rem #f2d7ee !important;
-  border-radius: 25px !important;
+  border-radius: 10px !important;
+  width: 250px;
+  transition: 0.3s;
 }
 
-.pagination > li.active {
-  background-color: #ffffff !important;
+.card:hover {
+  transform: translate(0, -5px);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.card-body {
+  padding: 0.8rem !important;
 }
 
 .loading-image {

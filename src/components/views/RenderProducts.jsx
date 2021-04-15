@@ -22,6 +22,7 @@ const RenderProducts = () => {
   );
 
   const addToCart = (e) => {
+    console.log(e.target);
     context.addToCart(e.target.name);
   };
 
@@ -30,7 +31,7 @@ const RenderProducts = () => {
       <div className="mb-3">
         {allProducts.map((p) => (
           <Card key={p.id}>
-            <CardBody>
+            <CardBody onClick={addToCart}>
               <CardImg
                 top
                 width="100%"
@@ -41,12 +42,12 @@ const RenderProducts = () => {
               <CardSubtitle tag="h6" className="mb-2 text-muted">
                 {p.description}
               </CardSubtitle>
-              <CardText>
+              <CardText name={p.id}>
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </CardText>
               <Button name={p.id} onClick={addToCart}>
-                Add To Cart
+                More
               </Button>
             </CardBody>
           </Card>

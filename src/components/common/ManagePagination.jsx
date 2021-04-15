@@ -26,7 +26,6 @@ export const ManagePagination = () => {
       >
         <PaginationLink
           onClick={() => context.managePageChange(p)}
-          style={{ borderColor: '#0e103d' }}
           className="mb-4"
         >
           {p}

@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { config } from '../../config';
 import { ProductContext } from '../../Context';
 import { Paginate, ManagePagination } from '../common/ManagePagination';
 import {
@@ -10,9 +11,29 @@ import {
   CardSubtitle,
   Button,
 } from 'reactstrap';
+import axios from 'axios';
 
 const RenderProducts = () => {
+  const BASE_URL = config.BASE_URL;
   const context = useContext(ProductContext);
+
+  const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      (async () => {
+        const response = await axios.get(BASE_URL + '/api/users/profile', {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+          },
+        });
+        setUsername(response.data.username);
+        setUserId(response.data.id);
+      })();
+    }
+  }, [BASE_URL]);
 
   // Render pages according to pagination settings
   const allProducts = Paginate(
@@ -22,8 +43,16 @@ const RenderProducts = () => {
   );
 
   const addToCart = (e) => {
-    console.log(e.target);
-    context.addToCart(e.target.name);
+    let productId = e.currentTarget.getAttribute('value');
+    console.log(
+      'ProductId is ' +
+        productId +
+        ' and User Details are ' +
+        userId +
+        '' +
+        username
+    );
+    context.addToCart(productId, username, userId);
   };
 
   return (
@@ -31,7 +60,7 @@ const RenderProducts = () => {
       <div className="mb-3">
         {allProducts.map((p) => (
           <Card key={p.id}>
-            <CardBody onClick={addToCart}>
+            <CardBody onClick={addToCart} value={p.id}>
               <CardImg
                 top
                 width="100%"

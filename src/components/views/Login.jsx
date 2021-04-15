@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { ApiUrlContext } from '../../Context';
+import { config } from '../../config';
 import axios from 'axios';
 import { Button, FormGroup, Label, Input } from 'reactstrap';
 
 const Login = (props) => {
-  const context = useContext(ApiUrlContext);
+  const BASE_URL = config.BASE_URL;
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -19,7 +19,7 @@ const Login = (props) => {
 
   const handleSubmit = async () => {
     // Set api endpoint for user login
-    const response = await axios.post(context.apiUrl() + '/api/users/login', {
+    const response = await axios.post(BASE_URL + '/api/users/login', {
       email: loginData.email,
       password: loginData.password,
     });

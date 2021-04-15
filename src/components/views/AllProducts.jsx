@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { ApiUrlContext, ProductContext } from '../../Context';
+import React, { useState, useEffect } from 'react';
+import { config } from '../../config';
+import { ProductContext } from '../../Context';
 import RenderProducts from './RenderProducts';
 import axios from 'axios';
 import loadingImage from '../../rolling.svg';
 
 const AllProducts = () => {
-  // Base URL context
-  const apiUrlContext = useContext(ApiUrlContext);
-
+  const BASE_URL = config.BASE_URL;
   // States
   const [products, setProducts] = useState([]);
   const [pageSize] = useState(1);
@@ -17,13 +16,11 @@ const AllProducts = () => {
   // Load all posts
   useEffect(() => {
     (async () => {
-      const response = await axios.get(
-        apiUrlContext.apiUrl() + '/api/products'
-      );
+      const response = await axios.get(BASE_URL + '/api/products');
       setProducts(response.data);
       setLoaded(true);
     })();
-  }, [apiUrlContext]);
+  });
 
   //Context
   const productContext = {
@@ -40,8 +37,8 @@ const AllProducts = () => {
       setCurrentPage(page);
       window.scrollTo(0, 0);
     },
-    addToCart: (productId) => {
-      alert('Adding to Cart:  ' + productId);
+    addToCart: (productId, username, userId) => {
+      alert('Adding to Cart:  ' + productId + ' by ' + username + '' + userId);
     },
   };
 

@@ -19,8 +19,8 @@ const ProductDetails = (props) => {
       const response = await axios.get(
         config.BASE_URL + '/api/products/' + productId
       );
-      await setProduct(response.data);
-      await setLoaded(true);
+      setProduct(response.data);
+      setLoaded(true);
     })();
   }, [productId]);
 

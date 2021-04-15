@@ -2,16 +2,17 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import { config } from './config';
+import { UserContext } from './Context';
 import { Container, Row } from 'reactstrap';
 import NavigationBar from './components/views/NavigationBar';
 import AllProducts from './components/views/AllProducts';
 import About from './components/views/About';
+import Cart from './components/views/Cart';
 import Login from './components/views/Login';
 import ProductDetails from './components/views/ProductDetails';
 import Footer from './components/views/Footer';
-import axios from 'axios';
-import { config } from './config';
-import { UserContext } from './Context';
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -57,6 +58,7 @@ const App = () => {
               />
               <Route exact path="/about" component={About} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/cart" component={Cart} />
             </Switch>
           </Row>
           <Row>

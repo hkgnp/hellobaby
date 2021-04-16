@@ -187,7 +187,7 @@ const Cart = () => {
             ${loaded === true && getTotalCost()}
           </span>
         </h5>
-        <a href="/checkout" className="btn-sm mr-3">
+        <a href="/checkout" className="btn btn-sm mr-3">
           Checkout
         </a>
       </Row>

@@ -131,21 +131,16 @@ const Cart = () => {
                 >
                   <button
                     onClick={handleDecrement}
-                    className="btn btn-sm p-2 m-0"
+                    className="border btn btn-sm p-2 m-0"
                     name={p.product_id}
                     value={p.quantity}
                   >
                     -
                   </button>
-                  <input
-                    value={p.quantity}
-                    type="text"
-                    size="1"
-                    className="form-control quantity-input"
-                  />
+                  <span className="pt-2 px-2 mt-1">{p.quantity}</span>
                   <button
                     onClick={handleIncrement}
-                    className="btn btn-sm p-2 m-0"
+                    className="border btn btn-sm p-2 m-0"
                     name={p.product_id}
                     value={p.quantity}
                   >

@@ -90,6 +90,28 @@ const Cart = () => {
     }
   };
 
+  const handleDelete = async (e) => {
+    // Get Index of item to remove
+    const productIndex = cart.allItems.findIndex(
+      (p) => p.product_id === parseInt(e)
+    );
+    // Remove from state
+    let cloned = { ...cart };
+    cloned.allItems.splice(productIndex, 1);
+
+    // Set back to state
+    setCart({
+      allItems: cloned.allItems,
+    });
+
+    // Remove from database
+    await axios.get(
+      `${config.BASE_URL}/api/cart/remove/${userContext.user().id}/${parseInt(
+        e
+      )}`
+    );
+  };
+
   const getTotalCost = () => {
     let totalCost = cart.allItems.map(
       (p) => (p.products.cost * p.quantity) / 100
@@ -146,19 +168,26 @@ const Cart = () => {
                   >
                     +
                   </button>
+                  <span className="pt-2 px-2 mt-1">
+                    <i
+                      onClick={() => handleDelete(p.product_id)}
+                      name={p.product_id}
+                      className="fas fa-trash"
+                    ></i>
+                  </span>
                 </div>
               </Col>
             </Row>
           ))}
       </div>
       <Row className="d-flex justify-content-between align-items-center p-1">
-        <h5 className="m-0 p-0">
+        <h5 className="my-0 mx-2 p-0">
           Total:{' '}
           <span style={{ color: '#E1084F' }}>
             ${loaded === true && getTotalCost()}
           </span>
         </h5>
-        <button className="btn-sm">Checkout</button>
+        <button className="btn-sm mr-3">Checkout</button>
       </Row>
     </Col>
   );

@@ -18,6 +18,18 @@ const App = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
+    // Set interval for refresh token
+    setInterval(async () => {
+      const response = await axios.post(
+        config.BASE_URL + '/api/users/refresh',
+        {
+          refreshToken: localStorage.getItem('refreshToken'),
+        }
+      );
+      localStorage.setItem('accessToken', response.data.accessToken);
+    }, 840000);
+
+    // Check if gotToken
     const gotToken = localStorage.getItem('accessToken');
 
     if (gotToken) {

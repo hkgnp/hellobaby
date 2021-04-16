@@ -19,15 +19,39 @@ const Cart = () => {
       );
       setCart(response.data);
       console.log(response.data.allItems);
+
+      const listToKeep = ['id', 'quantity'];
+      const quantityArr = response.data.allItems.map((obj) =>
+        listToKeep.reduce((newObj, key) => {
+          newObj[key] = obj[key];
+          return newObj;
+        }, {})
+      );
+      setQuantity(quantityArr);
       setLoaded(true);
     })();
-  }, [userContext]);
+  }, [quantity, userContext]);
 
-  const handleQuantity = (e) => {
-    alert(`Quantity of ${e.target.name} changed to ${e.target.value}`);
-    setQuantity({
-      [e.target.name]: e.target.value,
-    });
+  const handleIncrement = async (e) => {
+    await axios.post(
+      `${config.BASE_URL}/api/cart/update/${userContext.user().id}/${
+        e.target.name
+      }`,
+      {
+        quantity: parseInt(e.target.value) + 1,
+      }
+    );
+  };
+
+  const handleDecrement = async (e) => {
+    await axios.post(
+      `${config.BASE_URL}/api/cart/update/${userContext.user().id}/${
+        e.target.name
+      }`,
+      {
+        quantity: parseInt(e.target.value) - 1,
+      }
+    );
   };
 
   const getTotalCost = () => {
@@ -72,6 +96,8 @@ const Cart = () => {
                   <button
                     onClick={handleDecrement}
                     className="btn btn-sm p-2 m-0"
+                    name={p.products.id}
+                    value={p.quantity}
                   >
                     -
                   </button>
@@ -80,12 +106,12 @@ const Cart = () => {
                     type="text"
                     size="1"
                     className="form-control quantity-input"
-                    name={p.id}
-                    onChange={handleQuantity}
                   />
                   <button
                     onClick={handleIncrement}
                     className="btn btn-sm p-2 m-0"
+                    name={p.products.id}
+                    value={p.quantity}
                   >
                     +
                   </button>

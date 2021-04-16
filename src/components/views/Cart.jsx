@@ -19,20 +19,28 @@ const Cart = () => {
       );
       setCart(response.data);
       console.log(response.data.allItems);
-
-      const listToKeep = ['id', 'quantity'];
-      const quantityArr = response.data.allItems.map((obj) =>
-        listToKeep.reduce((newObj, key) => {
-          newObj[key] = obj[key];
-          return newObj;
-        }, {})
-      );
-      setQuantity(quantityArr);
       setLoaded(true);
     })();
-  }, [quantity, userContext]);
+  }, [userContext]);
 
   const handleIncrement = async (e) => {
+    // Get Index of item whose quantity is to change
+    const productIndex = cart.allItems.findIndex(
+      (p) => p.product_id === parseInt(e.target.name)
+    );
+
+    // Clone the existing state and mutate it
+    let cloned = { ...cart };
+    let { ...itemData } = cloned.allItems[productIndex];
+    itemData.quantity += 1;
+    cloned.allItems.splice(productIndex, 1, itemData);
+
+    // Set back the state
+    setCart({
+      allItems: cloned.allItems,
+    });
+
+    // Update the database
     await axios.post(
       `${config.BASE_URL}/api/cart/update/${userContext.user().id}/${
         e.target.name
@@ -44,14 +52,22 @@ const Cart = () => {
   };
 
   const handleDecrement = async (e) => {
-    await axios.post(
-      `${config.BASE_URL}/api/cart/update/${userContext.user().id}/${
-        e.target.name
-      }`,
-      {
-        quantity: parseInt(e.target.value) - 1,
-      }
-    );
+    if (parseInt(e.target.value) > 1) {
+      await axios.post(
+        `${config.BASE_URL}/api/cart/update/${userContext.user().id}/${
+          e.target.name
+        }`,
+        {
+          quantity: parseInt(e.target.value) - 1,
+        }
+      );
+    } else {
+      await axios.get(
+        `${config.BASE_URL}/api/cart/remove/${userContext.user().id}/${
+          e.target.name
+        }`
+      );
+    }
   };
 
   const getTotalCost = () => {
@@ -96,7 +112,7 @@ const Cart = () => {
                   <button
                     onClick={handleDecrement}
                     className="btn btn-sm p-2 m-0"
-                    name={p.products.id}
+                    name={p.product_id}
                     value={p.quantity}
                   >
                     -
@@ -110,7 +126,7 @@ const Cart = () => {
                   <button
                     onClick={handleIncrement}
                     className="btn btn-sm p-2 m-0"
-                    name={p.products.id}
+                    name={p.product_id}
                     value={p.quantity}
                   >
                     +

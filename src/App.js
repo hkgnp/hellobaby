@@ -13,6 +13,7 @@ import Cart from './components/views/Cart';
 import Login from './components/views/Login';
 import ProductDetails from './components/views/ProductDetails';
 import Checkout from './components/views/Checkout';
+import CheckoutSuccess from './components/views/CheckoutSuccess';
 import Footer from './components/views/Footer';
 
 const App = () => {
@@ -74,6 +75,11 @@ const App = () => {
               <Route exact path="/login" component={Login} />
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/checkout" component={Checkout} />
+              <Route
+                exact
+                path="/checkout/success"
+                component={CheckoutSuccess}
+              />
             </Switch>
           </Row>
           <Row>

@@ -1,3 +1,3 @@
 export const config = {
-  BASE_URL: 'https://5e88f940fe8d.ngrok.io',
+  BASE_URL: 'https://31e3d35c2a1f.ngrok.io',
 };

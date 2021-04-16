@@ -4,7 +4,7 @@ import { config } from '../../config';
 import axios from 'axios';
 import { Col, Button, FormGroup, Label, Input } from 'reactstrap';
 
-const Login = (props) => {
+const Login = () => {
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',

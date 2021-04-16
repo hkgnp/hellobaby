@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { UserContext } from '../../Context';
 import { config } from '../../config';
 import { Col } from 'reactstrap';
@@ -8,15 +8,11 @@ import { loadStripe } from '@stripe/stripe-js';
 const Checkout = () => {
   const userContext = useContext(UserContext);
 
-  //   const [publishableKey, setPublishableKey] = useState('');
-  //   const [sessionId, setSessionId] = useState('');
-
   useEffect(() => {
     (async () => {
       const response = await axios.get(
         `${config.BASE_URL}/api/checkout/${userContext.user().id}`
       );
-      console.log(response.data);
 
       const stripe = await loadStripe(response.data.publishableKey);
       console.log(stripe);
@@ -28,7 +24,7 @@ const Checkout = () => {
 
   return (
     <Col>
-      <h1>Checkout</h1>
+      <h3>Please wait while we transfer you to Stripe...</h3>
     </Col>
   );
 };

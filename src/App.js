@@ -12,6 +12,7 @@ import About from './components/views/About';
 import Cart from './components/views/Cart';
 import Login from './components/views/Login';
 import ProductDetails from './components/views/ProductDetails';
+import Checkout from './components/views/Checkout';
 import Footer from './components/views/Footer';
 
 const App = () => {
@@ -54,6 +55,7 @@ const App = () => {
       return user;
     },
   };
+
   return (
     <UserContext.Provider value={userContext}>
       <Router>
@@ -71,6 +73,7 @@ const App = () => {
               <Route exact path="/about" component={About} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/cart" component={Cart} />
+              <Route exact path="/checkout" component={Checkout} />
             </Switch>
           </Row>
           <Row>

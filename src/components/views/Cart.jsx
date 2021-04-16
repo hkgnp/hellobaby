@@ -10,7 +10,6 @@ const Cart = () => {
 
   const [cart, setCart] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [quantity, setQuantity] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -52,6 +51,27 @@ const Cart = () => {
   };
 
   const handleDecrement = async (e) => {
+    // Get Index of item whose quantity is to change
+    const productIndex = cart.allItems.findIndex(
+      (p) => p.product_id === parseInt(e.target.name)
+    );
+
+    // Clone the existing state and mutate it
+    let cloned = { ...cart };
+    let { ...itemData } = cloned.allItems[productIndex];
+    if (itemData.quantity > 1) {
+      itemData.quantity -= 1;
+      cloned.allItems.splice(productIndex, 1, itemData);
+    } else {
+      cloned.allItems.splice(productIndex, 1);
+    }
+
+    // Set back the state
+    setCart({
+      allItems: cloned.allItems,
+    });
+
+    // Update the database
     if (parseInt(e.target.value) > 1) {
       await axios.post(
         `${config.BASE_URL}/api/cart/update/${userContext.user().id}/${

@@ -44,13 +44,42 @@ const Cart = () => {
       <div>
         {loaded === true &&
           cart.allItems.map((p) => (
-            <li key={p.products.id}>
-              {p.products.name}, {p.quantity}, ${p.products.cost / 100}, $
-              {(p.products.cost / 100) * p.quantity.toFixed(2)}
-            </li>
+            <Row key={p.products.id}>
+              <Col className="border col-4 p-0 m-0 d-flex align-items-center">
+                <img
+                  className="cart-display-img"
+                  alt={p.products.name}
+                  src={p.products.thumbnail_url}
+                />
+              </Col>
+              <Col className="border cart-display">
+                <h4 className="m-0">{p.products.name}</h4>
+                <p className="m-0" style={{ color: '#E1084F' }}>
+                  ${p.products.cost / 100}
+                </p>
+                <div
+                  className="form-group col-4 p-0 d-flex m-0"
+                  style={{ height: '20px' }}
+                >
+                  <button className="btn btn-sm p-2 m-0">-</button>
+                  <input
+                    value={p.quantity}
+                    type="text"
+                    size="1"
+                    className="form-control p-1"
+                  />
+                  <button className="btn btn-sm p-2 m-0">+</button>
+                </div>
+              </Col>
+            </Row>
           ))}
-        {loaded === true && `$${getTotalCost()}`}
       </div>
+      <Row className="border d-flex justify-content-between align-items-center p-1">
+        <h5 className="m-0 p-0">
+          Total: <span style={{ color: '#E1084F' }}>${getTotalCost()}</span>
+        </h5>
+        <button className="btn btn-primary btn-sm">Checkout</button>
+      </Row>
     </Col>
   );
 };

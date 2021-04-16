@@ -81,6 +81,22 @@ body h1 {
   margin: 0px;
 }
 
+.cart-display-img {
+  height: 7rem;
+  width: 100%;
+  object-fit: contain;
+  margin: 0;
+}
+
+.cart-display {
+  height: 10rem;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .footer {
   margin-top: 2rem;
   padding: 0.8rem;

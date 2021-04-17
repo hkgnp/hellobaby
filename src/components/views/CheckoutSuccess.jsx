@@ -29,6 +29,7 @@ const CheckoutSuccess = () => {
           },
         }
       );
+      console.log(stripeResponse.data);
       setPurchasedItems(stripeResponse.data.data);
     })();
   }, [sessionId, userContext]);

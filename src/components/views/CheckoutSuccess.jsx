@@ -25,9 +25,7 @@ const CheckoutSuccess = () => {
         `https://api.stripe.com/v1/checkout/sessions/${sessionId}/line_items`,
         {
           headers: {
-            Authorization:
-              'Bearer ' +
-              'sk_test_51IaGU3L2CSs7osvhVdiPNeh3D3oVJrbqwUiqSe3n0uojPpADzO709W3KAerXNX5A7GIlPfOBtfqjCoIWFiE2rwLB00dp6wOUNv',
+            Authorization: 'Bearer ' + process.env.REACT_APP_STRIPE_SECRET_KEY,
           },
         }
       );

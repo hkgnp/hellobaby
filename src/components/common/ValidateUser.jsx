@@ -21,7 +21,14 @@ const ValidateUser = async (props) => {
       .required()
       .email({ minDomainSegments: 2, tlds: { allow: false } })
       .label('Username'),
-    password: Joi.string().required().min(5).label('Password'),
+    password: Joi.string()
+      .required()
+      .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z]).{5,}$'))
+      .label('Password')
+      .messages({
+        'string.pattern.base':
+          'Password must be at least 5 characters with at least 1 number, 1 lowercase and 1 uppercase character',
+      }),
     confirmPassword: Joi.any()
       .equal(Joi.ref('password'))
       .required()

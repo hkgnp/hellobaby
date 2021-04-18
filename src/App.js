@@ -16,6 +16,7 @@ import ProductDetails from './components/views/ProductDetails';
 import Checkout from './components/views/Checkout';
 import CheckoutSuccess from './components/views/CheckoutSuccess';
 import Footer from './components/views/Footer';
+import Profile from './components/views/Profile';
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -38,14 +39,15 @@ const App = () => {
     if (gotToken) {
       (async () => {
         const userResponse = await axios.get(
-          config.BASE_URL + '/api/users/profile',
+          `${config.BASE_URL}/api/users/profile`,
           {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
             },
           }
         );
-        setUser(userResponse.data);
+        console.log(userResponse.data.user);
+        setUser(userResponse.data.user);
       })();
     } else {
       return;
@@ -75,6 +77,7 @@ const App = () => {
               <Route exact path="/about" component={About} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/profile" component={Profile} />
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/checkout" component={Checkout} />
               <Route

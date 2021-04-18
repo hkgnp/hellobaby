@@ -88,9 +88,14 @@ const NavigationBar = () => {
                 <a className="mr-2" href="/cart">
                   <i className="fas fa-shopping-cart"></i>
                 </a>
-                <button className="btn-outline-dark btn-sm my-0">
-                  {userContext.user().username}
-                </button>
+                <a
+                  href="/profile"
+                  className="btn btn-warning btn-outline-dark btn-sm my-0 mr-1"
+                >
+                  <span className="text-dark">
+                    {userContext.user().username}
+                  </span>
+                </a>
                 <button
                   className="btn-outline-dark btn-sm my-0"
                   onClick={handleLogOut}

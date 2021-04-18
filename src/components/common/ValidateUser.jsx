@@ -46,11 +46,7 @@ const ValidateUser = async (props) => {
     }
   );
 
-  if (validationResult.error !== null) {
-    const errors = {};
-    validationResult.error.details.map((e) => (errors[e.path[0]] = e.message));
-    return errors;
-  } else {
+  if (validationResult.error === undefined) {
     try {
       await axios.post(`${config.BASE_URL}/api/users/register`, {
         username: username,
@@ -62,8 +58,12 @@ const ValidateUser = async (props) => {
       });
       return 'User successfully registered';
     } catch (e) {
-      return 'Username has already been taken';
+      return 'Email has already been taken';
     }
+  } else {
+    const errors = {};
+    validationResult.error.details.map((e) => (errors[e.path[0]] = e.message));
+    return errors;
   }
 };
 

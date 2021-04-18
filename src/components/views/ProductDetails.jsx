@@ -4,6 +4,14 @@ import { Col, Row, Button, Badge } from 'reactstrap';
 import { config } from '../../config';
 import { UserContext } from '../../Context';
 import loadingImage from '../../rolling.svg';
+import {
+  TwitterShareButton,
+  TwitterIcon,
+  FacebookShareButton,
+  FacebookIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+} from 'react-share';
 
 const ProductDetails = (props) => {
   const userContext = useContext(UserContext);
@@ -60,14 +68,49 @@ const ProductDetails = (props) => {
               <h2 className="mt-0 mb-3" style={{ color: '#E1084F' }}>
                 ${product.cost}
               </h2>
-              <Button className="btn-sm mr-2">
+              <Button
+                style={{
+                  borderColor: '#cff1fb',
+                  backgroundColor: '#cff1fb',
+                  color: '#000000',
+                  fontWeight: 'bold',
+                }}
+                className="btn-sm mr-2"
+              >
                 {product.category.category_name}
               </Button>
-              <Button className="btn-sm mr-2">
-                <i className="fas fa-share-alt"></i>
-              </Button>
-              <Button className="btn-sm" onClick={addToCart}>
-                Add To Cart
+              <TwitterShareButton
+                url={window.location.href}
+                title={product.name}
+                className="mr-1"
+              >
+                <TwitterIcon size={28} round />
+              </TwitterShareButton>
+              <FacebookShareButton
+                url={window.location.href}
+                title={product.name}
+                className="mr-1"
+              >
+                <FacebookIcon size={28} round />
+              </FacebookShareButton>
+              <WhatsappShareButton
+                url={window.location.href}
+                title={product.name}
+                className="mr-1"
+              >
+                <WhatsappIcon size={28} round />
+              </WhatsappShareButton>
+              <Button
+                style={{
+                  borderRadius: '20px',
+                  borderColor: '#E1084F',
+                  backgroundColor: '#E1084F',
+                  fontWeight: 'bold',
+                }}
+                className="btn-sm"
+                onClick={addToCart}
+              >
+                <i class="fas fa-cart-plus"></i> Add To Cart
               </Button>
             </Col>
           </Row>

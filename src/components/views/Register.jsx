@@ -23,11 +23,10 @@ const Register = (props) => {
       postalCode,
       role,
     });
-    console.log(errorMessages);
 
-    if (errorMessages === 'Username has already been taken') {
+    if (errorMessages === 'Email has already been taken') {
       setErrors({
-        usernameTaken: 'Username has already been taken',
+        usernameTaken: 'Email has already been taken',
       });
     } else {
       setErrors(errorMessages);
@@ -74,6 +73,11 @@ const Register = (props) => {
           />
           {errors.email ? (
             <div className="alert-sm alert-danger p-2">{errors.email}</div>
+          ) : null}
+          {errors.usernameTaken ? (
+            <div className="alert-sm alert-danger p-2">
+              {errors.usernameTaken}
+            </div>
           ) : null}
         </FormGroup>
         <FormGroup>

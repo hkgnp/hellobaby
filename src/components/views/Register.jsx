@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { config } from '../../config';
+import axios from 'axios';
 import ValidateUser from '../common/ValidateUser';
 
 const Register = (props) => {
@@ -32,18 +34,18 @@ const Register = (props) => {
       setErrors(errorMessages);
     }
 
-    // const tokenResponse = await axios.post(
-    //   `${config.BASE_URL}/api/users/login`,
-    //   {
-    //     email: email,
-    //     password: password,
-    //   }
-    // );
-    // localStorage.setItem('accessToken', tokenResponse.data.accessToken);
-    // localStorage.setItem('refreshToken', tokenResponse.data.refreshToken);
+    const tokenResponse = await axios.post(
+      `${config.BASE_URL}/api/users/login`,
+      {
+        email: email,
+        password: password,
+      }
+    );
+    localStorage.setItem('accessToken', tokenResponse.data.accessToken);
+    localStorage.setItem('refreshToken', tokenResponse.data.refreshToken);
 
-    // // Redirect
-    // window.location.href = '/allproducts';
+    // Redirect
+    window.location.href = '/allproducts';
   };
 
   return (
@@ -60,7 +62,7 @@ const Register = (props) => {
             onChange={(e) => setUsername(e.target.value)}
           />
           {errors.username ? (
-            <div className="alert-sm alert-danger p-2">{errors.username}</div>
+            <div className="alert-sm alert-warning p-2">{errors.username}</div>
           ) : null}
         </FormGroup>
         <FormGroup>
@@ -72,10 +74,10 @@ const Register = (props) => {
             onChange={(e) => setEmail(e.target.value)}
           />
           {errors.email ? (
-            <div className="alert-sm alert-danger p-2">{errors.email}</div>
+            <div className="alert-sm alert-warning p-2">{errors.email}</div>
           ) : null}
           {errors.usernameTaken ? (
-            <div className="alert-sm alert-danger p-2">
+            <div className="alert-sm alert-warning p-2">
               {errors.usernameTaken}
             </div>
           ) : null}
@@ -89,7 +91,7 @@ const Register = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
           {errors.password ? (
-            <div className="alert-sm alert-danger p-2">{errors.password}</div>
+            <div className="alert-sm alert-warning p-2">{errors.password}</div>
           ) : null}
         </FormGroup>
         <FormGroup>
@@ -101,7 +103,7 @@ const Register = (props) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
           {errors.confirmPassword ? (
-            <div className="alert-sm alert-danger p-2">
+            <div className="alert-sm alert-warning p-2">
               {errors.confirmPassword}
             </div>
           ) : null}
@@ -115,7 +117,7 @@ const Register = (props) => {
             onChange={(e) => setAddress(e.target.value)}
           />
           {errors.address ? (
-            <div className="alert-sm alert-danger p-2">{errors.address}</div>
+            <div className="alert-sm alert-warning p-2">{errors.address}</div>
           ) : null}
           <FormText color="muted">
             Apologies, we currently only ship within Singapore.
@@ -130,7 +132,9 @@ const Register = (props) => {
             onChange={(e) => setPostalCode(e.target.value)}
           />
           {errors.postalCode ? (
-            <div className="alert-sm alert-danger p-2">{errors.postalCode}</div>
+            <div className="alert-sm alert-warning p-2">
+              {errors.postalCode}
+            </div>
           ) : null}
         </FormGroup>
         <button className="btn btn-success btn-sm mr-2">Submit</button>

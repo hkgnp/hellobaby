@@ -11,6 +11,7 @@ import AllProducts from './components/views/AllProducts';
 import About from './components/views/About';
 import Cart from './components/views/Cart';
 import Login from './components/views/Login';
+import Register from './components/views/Register';
 import ProductDetails from './components/views/ProductDetails';
 import Checkout from './components/views/Checkout';
 import CheckoutSuccess from './components/views/CheckoutSuccess';
@@ -72,6 +73,7 @@ const App = () => {
                 render={(props) => <ProductDetails {...props} />}
               />
               <Route exact path="/about" component={About} />
+              <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/checkout" component={Checkout} />

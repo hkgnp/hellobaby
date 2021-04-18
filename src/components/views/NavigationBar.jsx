@@ -69,9 +69,19 @@ const NavigationBar = () => {
           </Nav>
           <NavbarText>
             {gotToken() || (
-              <a href="/login" className="btn btn-outline-dark btn-sm my-0">
-                <span className="text-dark">Login</span>
-              </a>
+              <React.Fragment>
+                <a
+                  href="/login"
+                  className="btn btn-outline-warning btn-sm my-0 mr-2"
+                >
+                  <span className="text-warning">
+                    <strong>Login</strong>
+                  </span>
+                </a>
+                <a href="/register" className="btn btn-warning btn-sm my-0">
+                  <span className="text-dark">Register</span>
+                </a>
+              </React.Fragment>
             )}
             {gotToken() && (
               <React.Fragment>

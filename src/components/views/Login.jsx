@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = async () => {
     // Get access and refresh tokens
     const tokenResponse = await axios.post(
-      config.BASE_URL + '/api/users/login',
+      `${config.BASE_URL}/api/users/login`,
       {
         email: loginData.email,
         password: loginData.password,

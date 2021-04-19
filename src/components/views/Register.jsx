@@ -111,7 +111,7 @@ const Register = (props) => {
           <Label>Confirm Password</Label>
           <Input
             type="password"
-            name="confirm-password"
+            name="confirmPassword"
             placeholder="Confirm your password"
             onChange={handleForm}
           />
@@ -140,7 +140,7 @@ const Register = (props) => {
           <Label>Postal Code</Label>
           <Input
             type="text"
-            name="postal_code"
+            name="postalCode"
             placeholder="SG postal code"
             onChange={handleForm}
           />

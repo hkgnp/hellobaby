@@ -35,8 +35,10 @@ const App = () => {
 
     // Check if gotToken
     const gotToken = localStorage.getItem('accessToken');
-
-    if (gotToken) {
+    console.log(gotToken);
+    if (!gotToken) {
+      setUser('No user');
+    } else {
       (async () => {
         const userResponse = await axios.get(
           `${config.BASE_URL}/api/users/profile`,
@@ -48,8 +50,6 @@ const App = () => {
         );
         setUser(userResponse.data.user);
       })();
-    } else {
-      return;
     }
   }, []);
 

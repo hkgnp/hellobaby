@@ -2,7 +2,7 @@ import axios from 'axios';
 import Joi from 'joi';
 import { config } from '../../config';
 
-const ValidateUser = async (props) => {
+const ValidateUserRegistration = async (props) => {
   // Destructure
   const {
     username,
@@ -67,4 +67,4 @@ const ValidateUser = async (props) => {
   }
 };
 
-export default ValidateUser;
+export default ValidateUserRegistration;

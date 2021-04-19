@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { config } from '../../config';
 import axios from 'axios';
-import ValidateUser from '../common/ValidateUser';
+import ValidateUserRegistration from '../common/ValidateUserRegistration.jsx';
 
 const Register = (props) => {
   const [userDetails, setUserDetails] = useState({});
   const [errors, setErrors] = useState({});
-  const [role] = useState(2);
 
   const handleForm = (e) => {
     setUserDetails({
       ...userDetails,
       [e.target.name]: e.target.value,
+      role: 2,
     });
   };
 
@@ -29,7 +29,7 @@ const Register = (props) => {
 
     e.preventDefault();
 
-    const errorMessages = await ValidateUser({
+    const errorMessages = await ValidateUserRegistration({
       username,
       email,
       password,
@@ -150,7 +150,11 @@ const Register = (props) => {
             </div>
           )}
         </FormGroup>
-        <button className="btn btn-success btn-sm mr-2">Submit</button>
+        <input
+          className="btn btn-success btn-sm mr-2"
+          value="Submit"
+          type="submit"
+        />
         <a href="/allproducts" className="btn btn-danger btn-sm">
           Cancel
         </a>

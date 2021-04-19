@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { config } from '../../config';
 import axios from 'axios';
-import ValidateUserRegistration from '../common/ValidateUserRegistration.jsx';
+import ValidateUserRegistration from '../common/ValidateUserRegistration';
 
 const Register = (props) => {
   const [userDetails, setUserDetails] = useState({});

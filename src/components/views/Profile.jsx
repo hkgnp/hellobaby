@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Col } from 'reactstrap';
 import { UserContext } from '../../Context';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import ValidateUserLogin from '../common/ValidateUserLogin';
+import ValidateUserUpdateProfile from '../common/ValidateUserUpdateProfile';
 
 const Profile = () => {
   const userContext = useContext(UserContext);
@@ -12,7 +12,9 @@ const Profile = () => {
 
   useEffect(() => {
     userContext.user() === 'No user'
-      ? setErrors({ notLoggedIn: 'You must be logged in to view this page' })
+      ? setErrors({
+          notLoggedIn: 'You must be logged in to view this page.',
+        })
       : setUserDetails(userContext.user());
   }, [userContext]);
 
@@ -26,7 +28,9 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     const { username, email, address, postal_code } = userDetails;
 
-    const errorMessages = await ValidateUserLogin({
+    e.preventDefault();
+
+    const errorMessages = await ValidateUserUpdateProfile({
       username,
       email,
       address,
@@ -45,7 +49,10 @@ const Profile = () => {
   return (
     <Col>
       {errors.notLoggedIn ? (
-        errors.notLoggedIn
+        <p>
+          {errors.notLoggedIn}. <a href="/login">Login</a> or{' '}
+          <a href="/register">Register</a> for a new account.
+        </p>
       ) : (
         <React.Fragment>
           <h1>{!editProfile ? 'Your Profile' : 'Edit Profile'}</h1>
@@ -55,7 +62,7 @@ const Profile = () => {
               <Input
                 type="text"
                 name="username"
-                value={userDetails.username}
+                value={userDetails.username || ''}
                 onChange={handleForm}
                 disabled={!editProfile && true}
               />
@@ -70,7 +77,7 @@ const Profile = () => {
               <Input
                 type="text"
                 name="email"
-                value={userDetails.email}
+                value={userDetails.email || ''}
                 onChange={handleForm}
                 disabled={!editProfile && true}
               />
@@ -83,7 +90,7 @@ const Profile = () => {
               <Input
                 type="text"
                 name="address"
-                value={userDetails.address}
+                value={userDetails.address || ''}
                 onChange={handleForm}
                 disabled={!editProfile && true}
               />
@@ -98,7 +105,7 @@ const Profile = () => {
               <Input
                 type="text"
                 name="postal_code"
-                value={userDetails.postal_code}
+                value={userDetails.postal_code || ''}
                 onChange={handleForm}
                 disabled={!editProfile && true}
               />

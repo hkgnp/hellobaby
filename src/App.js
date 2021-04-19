@@ -35,7 +35,7 @@ const App = () => {
 
     // Check if gotToken
     const gotToken = localStorage.getItem('accessToken');
-    console.log(gotToken);
+
     if (!gotToken) {
       setUser('No user');
     } else {

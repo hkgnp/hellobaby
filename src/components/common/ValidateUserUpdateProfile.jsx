@@ -2,7 +2,7 @@ import axios from 'axios';
 import Joi from 'joi';
 import { config } from '../../config';
 
-const ValidateUserLogin = async (props) => {
+const ValidateUserUpdateProfile = async (props) => {
   // Destructure
   const { username, email, address, postal_code } = props;
 
@@ -25,16 +25,14 @@ const ValidateUserLogin = async (props) => {
     }
   );
 
-  console.log(validationResult);
-
   if (validationResult.error === undefined) {
     try {
-      await axios.post(`${config.BASE_URL}/api/users/register`, {
-        username: username,
-        email: email,
-        address: address,
-        postal_code: postal_code,
-      });
+      // await axios.post(`${config.BASE_URL}/api/users/register`, {
+      //   username: username,
+      //   email: email,
+      //   address: address,
+      //   postal_code: postal_code,
+      // });
       return 'User successfully updated';
     } catch (e) {
       return 'Error updating user';
@@ -46,4 +44,4 @@ const ValidateUserLogin = async (props) => {
   }
 };
 
-export default ValidateUserLogin;
+export default ValidateUserUpdateProfile;

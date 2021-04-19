@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Col } from 'reactstrap';
+import { Col, FormText } from 'reactstrap';
 import { UserContext } from '../../Context';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import ValidateUserUpdateProfile from '../common/ValidateUserUpdateProfile';
@@ -41,6 +41,8 @@ const Profile = () => {
       setErrors({
         updateError: 'Error updating your profile. Please try again.',
       });
+    } else if (errorMessages === 'User successfully updated') {
+      setEditProfile(false);
     } else {
       setErrors(errorMessages);
     }
@@ -58,6 +60,22 @@ const Profile = () => {
           <h1>{!editProfile ? 'Your Profile' : 'Edit Profile'}</h1>
           <Form onSubmit={handleSubmit}>
             <FormGroup>
+              <Label>Your Email</Label>
+              <Input
+                type="text"
+                name="email"
+                value={userDetails.email || ''}
+                onChange={handleForm}
+                disabled
+              />
+              {editProfile && (
+                <FormText>
+                  Apologies, your email cannot be changed from here. Please
+                  contact us if you would like to do so.
+                </FormText>
+              )}
+            </FormGroup>
+            <FormGroup>
               <Label>Your Name</Label>
               <Input
                 type="text"
@@ -70,19 +88,6 @@ const Profile = () => {
                 <div className="alert-sm alert-warning p-2">
                   {errors.username}
                 </div>
-              )}
-            </FormGroup>
-            <FormGroup>
-              <Label>Your Email</Label>
-              <Input
-                type="text"
-                name="email"
-                value={userDetails.email || ''}
-                onChange={handleForm}
-                disabled={!editProfile && true}
-              />
-              {errors.email && (
-                <div className="alert-sm alert-warning p-2">{errors.email}</div>
               )}
             </FormGroup>
             <FormGroup>

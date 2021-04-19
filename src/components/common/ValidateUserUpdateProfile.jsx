@@ -27,12 +27,12 @@ const ValidateUserUpdateProfile = async (props) => {
 
   if (validationResult.error === undefined) {
     try {
-      // await axios.post(`${config.BASE_URL}/api/users/register`, {
-      //   username: username,
-      //   email: email,
-      //   address: address,
-      //   postal_code: postal_code,
-      // });
+      await axios.post(`${config.BASE_URL}/api/users/updateprofile`, {
+        username: username,
+        email: email,
+        address: address,
+        postal_code: postal_code,
+      });
       return 'User successfully updated';
     } catch (e) {
       return 'Error updating user';

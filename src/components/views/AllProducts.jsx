@@ -45,7 +45,7 @@ const AllProducts = (props) => {
   return (
     <Col>
       <div className="text-center">
-        {loaded === false && (
+        {!loaded && (
           <img
             className="loading-image"
             src={loadingImage}
@@ -54,7 +54,7 @@ const AllProducts = (props) => {
         )}
       </div>
       <ProductContext.Provider value={productContext}>
-        {loaded === true && <RenderProducts />}
+        {loaded && <RenderProducts />}
       </ProductContext.Provider>
     </Col>
   );

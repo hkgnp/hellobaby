@@ -5,17 +5,30 @@ import axios from 'axios';
 import ValidateUser from '../common/ValidateUser';
 
 const Register = (props) => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [address, setAddress] = useState('');
-  const [postalCode, setPostalCode] = useState('');
+  const [userDetails, setUserDetails] = useState({});
   const [errors, setErrors] = useState({});
   const [role] = useState(2);
 
+  const handleForm = (e) => {
+    setUserDetails({
+      ...userDetails,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = async (e) => {
+    const {
+      username,
+      email,
+      password,
+      confirmPassword,
+      address,
+      postalCode,
+      role,
+    } = userDetails;
+
     e.preventDefault();
+
     const errorMessages = await ValidateUser({
       username,
       email,
@@ -59,7 +72,7 @@ const Register = (props) => {
             type="text"
             name="username"
             placeholder="Your fine name"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={handleForm}
           />
           {errors.username && (
             <div className="alert-sm alert-warning p-2">{errors.username}</div>
@@ -71,7 +84,7 @@ const Register = (props) => {
             type="email"
             name="email"
             placeholder="Your email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleForm}
           />
           {errors.email && (
             <div className="alert-sm alert-warning p-2">{errors.email}</div>
@@ -88,7 +101,7 @@ const Register = (props) => {
             type="password"
             name="password"
             placeholder="Enter a complex password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleForm}
           />
           {errors.password && (
             <div className="alert-sm alert-warning p-2">{errors.password}</div>
@@ -100,7 +113,7 @@ const Register = (props) => {
             type="password"
             name="confirm-password"
             placeholder="Confirm your password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={handleForm}
           />
           {errors.confirmPassword && (
             <div className="alert-sm alert-warning p-2">
@@ -114,7 +127,7 @@ const Register = (props) => {
             type="text"
             name="address"
             placeholder="Delivery address please"
-            onChange={(e) => setAddress(e.target.value)}
+            onChange={handleForm}
           />
           {errors.address && (
             <div className="alert-sm alert-warning p-2">{errors.address}</div>
@@ -129,7 +142,7 @@ const Register = (props) => {
             type="text"
             name="postal_code"
             placeholder="SG postal code"
-            onChange={(e) => setPostalCode(e.target.value)}
+            onChange={handleForm}
           />
           {errors.postalCode && (
             <div className="alert-sm alert-warning p-2">

@@ -46,7 +46,6 @@ const App = () => {
             },
           }
         );
-        console.log(userResponse.data.user);
         setUser(userResponse.data.user);
       })();
     } else {

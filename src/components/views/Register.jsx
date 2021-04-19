@@ -61,9 +61,9 @@ const Register = (props) => {
             placeholder="Your fine name"
             onChange={(e) => setUsername(e.target.value)}
           />
-          {errors.username ? (
+          {errors.username && (
             <div className="alert-sm alert-warning p-2">{errors.username}</div>
-          ) : null}
+          )}
         </FormGroup>
         <FormGroup>
           <Label>Email</Label>
@@ -73,14 +73,14 @@ const Register = (props) => {
             placeholder="Your email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          {errors.email ? (
+          {errors.email && (
             <div className="alert-sm alert-warning p-2">{errors.email}</div>
-          ) : null}
-          {errors.usernameTaken ? (
+          )}
+          {errors.usernameTaken && (
             <div className="alert-sm alert-warning p-2">
               {errors.usernameTaken}
             </div>
-          ) : null}
+          )}
         </FormGroup>
         <FormGroup>
           <Label>Password</Label>
@@ -90,9 +90,9 @@ const Register = (props) => {
             placeholder="Enter a complex password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          {errors.password ? (
+          {errors.password && (
             <div className="alert-sm alert-warning p-2">{errors.password}</div>
-          ) : null}
+          )}
         </FormGroup>
         <FormGroup>
           <Label>Confirm Password</Label>
@@ -102,11 +102,11 @@ const Register = (props) => {
             placeholder="Confirm your password"
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          {errors.confirmPassword ? (
+          {errors.confirmPassword && (
             <div className="alert-sm alert-warning p-2">
               {errors.confirmPassword}
             </div>
-          ) : null}
+          )}
         </FormGroup>
         <FormGroup>
           <Label>Address</Label>
@@ -116,9 +116,9 @@ const Register = (props) => {
             placeholder="Delivery address please"
             onChange={(e) => setAddress(e.target.value)}
           />
-          {errors.address ? (
+          {errors.address && (
             <div className="alert-sm alert-warning p-2">{errors.address}</div>
-          ) : null}
+          )}
           <FormText color="muted">
             Apologies, we currently only ship within Singapore.
           </FormText>
@@ -131,11 +131,11 @@ const Register = (props) => {
             placeholder="SG postal code"
             onChange={(e) => setPostalCode(e.target.value)}
           />
-          {errors.postalCode ? (
+          {errors.postalCode && (
             <div className="alert-sm alert-warning p-2">
               {errors.postalCode}
             </div>
-          ) : null}
+          )}
         </FormGroup>
         <button className="btn btn-success btn-sm mr-2">Submit</button>
         <a href="/allproducts" className="btn btn-danger btn-sm">

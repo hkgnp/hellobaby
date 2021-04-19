@@ -21,6 +21,7 @@ const ProductDetails = (props) => {
   );
   const [product, setProduct] = useState('');
   const [loaded, setLoaded] = useState(false);
+  const [addToCartError, setAddToCartError] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -33,16 +34,22 @@ const ProductDetails = (props) => {
   }, [productId]);
 
   const addToCart = async () => {
-    await axios.get(
-      `${config.BASE_URL}/api/cart/add/${userContext.user().id}/${productId}`
-    );
-    props.history.push('/allproducts');
+    if (userContext.user().username) {
+      await axios.get(
+        `${config.BASE_URL}/api/cart/add/${userContext.user().id}/${productId}`
+      );
+      props.history.push('/allproducts');
+    } else {
+      setAddToCartError(
+        'You must be logged in to add to cart. Please register for a new account or log in.'
+      );
+    }
   };
 
   return (
     <Col>
       <Row>
-        {loaded === false && (
+        {!loaded && (
           <img
             className="loading-image mt-5"
             src={loadingImage}
@@ -50,7 +57,7 @@ const ProductDetails = (props) => {
           />
         )}
       </Row>
-      {loaded === true && (
+      {loaded && (
         <React.Fragment>
           <Row className="mb-3">
             <Col>
@@ -114,6 +121,9 @@ const ProductDetails = (props) => {
               </Button>
             </Col>
           </Row>
+          {addToCartError && (
+            <div className="alert-sm alert-warning p-2">{addToCartError}</div>
+          )}
           <Row className="d-block p-3 mx-0 mb-2 bg-white">
             <p className="product-details-quick-info">
               <i className="far fa-building"></i> Company: {product.company}

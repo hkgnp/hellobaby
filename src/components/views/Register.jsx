@@ -23,6 +23,7 @@ const Register = (props) => {
       password,
       confirmPassword,
       address,
+      contact,
       postalCode,
       role,
     } = userDetails;
@@ -35,6 +36,7 @@ const Register = (props) => {
       password,
       confirmPassword,
       address,
+      contact,
       postalCode,
       role,
     });
@@ -119,6 +121,18 @@ const Register = (props) => {
             <div className="alert-sm alert-warning p-2">
               {errors.confirmPassword}
             </div>
+          )}
+        </FormGroup>
+        <FormGroup>
+          <Label>Contact</Label>
+          <Input
+            type="text"
+            name="contact"
+            placeholder="Means to reach you"
+            onChange={handleForm}
+          />
+          {errors.contact && (
+            <div className="alert-sm alert-warning p-2">{errors.contact}</div>
           )}
         </FormGroup>
         <FormGroup>

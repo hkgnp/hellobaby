@@ -9,6 +9,7 @@ const ValidateUserRegistration = async (props) => {
     email,
     password,
     confirmPassword,
+    contact,
     address,
     postalCode,
     role,
@@ -34,6 +35,7 @@ const ValidateUserRegistration = async (props) => {
       .required()
       .label('Passwords')
       .messages({ 'any.only': 'Passwords do not match' }),
+    contact: Joi.string().min(6).required().label('Contact'),
     address: Joi.string().required().label('Address'),
     postalCode: Joi.string().min(6).max(6).required().label('Postal Code'),
   });
@@ -53,6 +55,7 @@ const ValidateUserRegistration = async (props) => {
         email: email,
         password: password,
         address: address,
+        contact: contact,
         postal_code: postalCode,
         role_id: role,
       });

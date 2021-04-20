@@ -26,7 +26,7 @@ const Profile = () => {
   };
 
   const handleSubmit = async (e) => {
-    const { username, email, address, postal_code } = userDetails;
+    const { username, email, address, postal_code, contact } = userDetails;
 
     e.preventDefault();
 
@@ -35,6 +35,7 @@ const Profile = () => {
       email,
       address,
       postal_code,
+      contact,
     });
 
     if (errorMessages === 'Error updating user') {
@@ -87,6 +88,21 @@ const Profile = () => {
               {errors.username && (
                 <div className="alert-sm alert-warning p-2">
                   {errors.username}
+                </div>
+              )}
+            </FormGroup>
+            <FormGroup>
+              <Label>Your Contact</Label>
+              <Input
+                type="text"
+                name="contact"
+                value={userDetails.contact || ''}
+                onChange={handleForm}
+                disabled={!editProfile && true}
+              />
+              {errors.contact && (
+                <div className="alert-sm alert-warning p-2">
+                  {errors.contact}
                 </div>
               )}
             </FormGroup>

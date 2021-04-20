@@ -4,7 +4,7 @@ import { config } from '../../config';
 
 const ValidateUserUpdateProfile = async (props) => {
   // Destructure
-  const { username, email, address, postal_code } = props;
+  const { username, email, address, contact, postal_code } = props;
 
   // Set up schema for Joi
   const schema = Joi.object({
@@ -13,13 +13,14 @@ const ValidateUserUpdateProfile = async (props) => {
       .required()
       .email({ minDomainSegments: 2, tlds: { allow: false } })
       .label('Username'),
+    contact: Joi.string().min(6).required().label('Contact'),
     address: Joi.string().required().label('Address'),
     postal_code: Joi.string().min(6).max(6).required().label('Postal Code'),
   });
 
   // Implement Joi validation
   const validationResult = schema.validate(
-    { username, email, address, postal_code },
+    { username, email, address, contact, postal_code },
     {
       abortEarly: false,
     }
@@ -31,6 +32,7 @@ const ValidateUserUpdateProfile = async (props) => {
         username: username,
         email: email,
         address: address,
+        contact: contact,
         postal_code: postal_code,
       });
       return 'User successfully updated';

@@ -41,14 +41,7 @@ const RenderPastOrders = (props) => {
           >
             <Col className="d-flex flex-column">
               <h5>Order ID:</h5>
-              <small className="order-id-small">{o.order_id}</small>
-              {o.orderitems.map((oi) => (
-                <small>
-                  <li>
-                    {oi.product_id}, {oi.quantity}
-                  </li>
-                </small>
-              ))}
+              <small className="order-id-small">{o.order_id}</small>a
             </Col>
             <Col className="d-flex justify-content-end align-items-center ">
               <h4>{o.status.name}</h4>

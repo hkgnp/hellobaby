@@ -3,11 +3,14 @@ import { Col, FormText } from 'reactstrap';
 import { UserContext } from '../../Context';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import ValidateUserUpdateProfile from '../common/ValidateUserUpdateProfile';
+import axios from 'axios';
+import { config } from '../../config';
 
 const Profile = () => {
   const userContext = useContext(UserContext);
   const [editProfile, setEditProfile] = useState(false);
   const [userDetails, setUserDetails] = useState({});
+  const [pastOrders, setPastOrders] = useState({});
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -16,7 +19,14 @@ const Profile = () => {
           notLoggedIn: 'You must be logged in to view this page.',
         })
       : setUserDetails(userContext.user());
-  }, [userContext]);
+
+    (async () => {
+      const response = await axios.get(
+        `${config.BASE_URL}/api/orders/${userDetails.id}`
+      );
+      setPastOrders(response.data);
+    })();
+  }, [userContext, userDetails]);
 
   const handleForm = (e) => {
     setUserDetails({

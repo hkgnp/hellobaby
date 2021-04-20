@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { Col, Row, Button, Badge } from 'reactstrap';
 import { config } from '../../config';
 import { UserContext } from '../../Context';
@@ -16,9 +17,8 @@ import {
 const ProductDetails = (props) => {
   const userContext = useContext(UserContext);
 
-  const productId = window.location.href.substring(
-    window.location.href.lastIndexOf('/') + 1
-  );
+  const { productId } = useParams();
+
   const [product, setProduct] = useState('');
   const [loaded, setLoaded] = useState(false);
   const [addToCartError, setAddToCartError] = useState('');

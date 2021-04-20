@@ -69,10 +69,7 @@ const App = () => {
           <Row style={{ minHeight: '80vh' }}>
             <Switch>
               <Route exact path="/allproducts" component={AllProducts} />
-              <Route
-                path="/product"
-                render={(props) => <ProductDetails {...props} />}
-              />
+              <Route path="/product/:productId" component={ProductDetails} />
               <Route exact path="/about" component={About} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />

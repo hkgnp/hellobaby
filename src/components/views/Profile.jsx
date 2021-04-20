@@ -5,6 +5,8 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 import ValidateUserUpdateProfile from '../common/ValidateUserUpdateProfile';
 import axios from 'axios';
 import { config } from '../../config';
+import loadingImage from '../../rolling.svg';
+import RenderPastOrders from './RenderPastOrders';
 
 const Profile = () => {
   const userContext = useContext(UserContext);
@@ -12,6 +14,7 @@ const Profile = () => {
   const [userDetails, setUserDetails] = useState({});
   const [pastOrders, setPastOrders] = useState({});
   const [errors, setErrors] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     userContext.user() === 'No user'
@@ -24,7 +27,8 @@ const Profile = () => {
       const response = await axios.get(
         `${config.BASE_URL}/api/orders/${userDetails.id}`
       );
-      setPastOrders(response.data);
+      setPastOrders(response.data.orders);
+      setLoaded(true);
     })();
   }, [userContext, userDetails]);
 
@@ -170,6 +174,14 @@ const Profile = () => {
             )}
           </Form>
           <h3 className="mt-4">Past Orders</h3>
+          {!loaded && (
+            <img
+              className="loading-image"
+              src={loadingImage}
+              alt="Loading spinner"
+            />
+          )}
+          {loaded && <RenderPastOrders pastOrders={pastOrders} />}
         </React.Fragment>
       )}
     </Col>

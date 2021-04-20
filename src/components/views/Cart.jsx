@@ -17,7 +17,6 @@ const Cart = () => {
         `${config.BASE_URL}/api/cart/${userContext.user().id}`
       );
       setCart(response.data);
-      console.log(response.data.allItems);
       setLoaded(true);
     })();
   }, [userContext]);

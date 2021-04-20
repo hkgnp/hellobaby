@@ -15,7 +15,6 @@ const Checkout = () => {
       );
 
       const stripe = await loadStripe(response.data.publishableKey);
-      console.log(stripe);
       await stripe.redirectToCheckout({
         sessionId: response.data.sessionId,
       });

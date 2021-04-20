@@ -31,7 +31,7 @@ const App = () => {
         }
       );
       localStorage.setItem('accessToken', response.data.accessToken);
-    }, 14 * 60 * 1000);
+    }, 10 * 60 * 1000);
 
     // Check if gotToken
     const gotToken = localStorage.getItem('accessToken');

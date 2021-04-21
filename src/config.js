@@ -1,4 +1,4 @@
 export const config = {
-  BASE_URL: 'https://31e3d35c2a1f.ngrok.io',
+  BASE_URL: 'https://ancient-fortress-09431.herokuapp.com',
   STRIPE_API_URL: 'https://api.stripe.com/v1',
 };

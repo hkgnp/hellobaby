@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Col, FormGroup, Input } from 'reactstrap';
+import { Col, FormGroup, Input, Form } from 'reactstrap';
 import { config } from '../../config';
 import { ProductContext } from '../../Context';
 import RenderProducts from './RenderProducts';
@@ -16,7 +16,7 @@ const AllProducts = (props) => {
   // Load all posts
   useEffect(() => {
     (async () => {
-      const response = await axios.get(config.BASE_URL + '/api/products');
+      const response = await axios.get(`${config.BASE_URL}/api/products`);
       setProducts(response.data);
       setLoaded(true);
     })();
@@ -50,6 +50,11 @@ const AllProducts = (props) => {
     }
   };
 
+  const handleSearch = async (e) => {
+    const response = await axios.get(`${config.BASE_URL}/api/products/search`);
+    console.log(response);
+  };
+
   return (
     <Col>
       <div className="text-center">
@@ -61,6 +66,11 @@ const AllProducts = (props) => {
           />
         )}
       </div>
+      <Form onSubmit={handleSearch}>
+        <FormGroup className="mx-0 mb-2 p-0" style={{ width: '100%' }}>
+          <Input type="text" name="search" placeholder="Search for..." />
+        </FormGroup>
+      </Form>
       <div className="d-flex flex-row justify-content-between align-items-center">
         <small className="text-muted">Showing {products.length} products</small>
         <div className="d-flex flex-row align-items-center justify-content-end">

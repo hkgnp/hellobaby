@@ -1,6 +1,11 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { config } from './config';
@@ -69,8 +74,8 @@ const App = () => {
           <Row style={{ minHeight: '80vh' }}>
             <Switch>
               {/* Placeholder for setting different homepage for e.g. promos */}
-              <Route exact path="/" component={AllProducts} />
               <Route exact path="/allproducts" component={AllProducts} />
+              <Redirect from="/" to="/allproducts" />
               <Route path="/product/:productId" component={ProductDetails} />
               <Route exact path="/about" component={About} />
               <Route exact path="/register" component={Register} />

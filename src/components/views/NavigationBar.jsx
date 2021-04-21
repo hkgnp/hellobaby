@@ -7,8 +7,6 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
   NavbarText,
 } from 'reactstrap';
 import { UserContext } from '../../Context';
@@ -48,24 +46,7 @@ const NavigationBar = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/allproducts">
-                <i className="fas fa-list-alt" style={{ color: 'blue' }}></i>
-                &nbsp;Browse Products
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/usefullinks">
-                <i className="fas fa-gift" style={{ color: 'green' }}></i>
-                &nbsp;Useful Links
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/about">
-                <i className="fas fa-info-circle" style={{ color: 'red' }}></i>
-                &nbsp;About This App
-              </NavLink>
-            </NavItem>
+            {/* Placeholder for NavItem */}
           </Nav>
           <NavbarText>
             {gotToken() || (

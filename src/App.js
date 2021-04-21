@@ -68,6 +68,8 @@ const App = () => {
           </Row>
           <Row style={{ minHeight: '80vh' }}>
             <Switch>
+              {/* Placeholder for setting different homepage for e.g. promos */}
+              <Route exact path="/" component={AllProducts} />
               <Route exact path="/allproducts" component={AllProducts} />
               <Route path="/product/:productId" component={ProductDetails} />
               <Route exact path="/about" component={About} />

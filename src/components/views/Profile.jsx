@@ -20,9 +20,11 @@ const Profile = () => {
   }, [userContext, userDetails]);
 
   const handleForm = (e) => {
+    let clone = { ...userDetails };
     setUserDetails({
-      ...userDetails,
+      ...clone,
       [e.target.name]: e.target.value,
+      role: 2,
     });
   };
 

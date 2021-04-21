@@ -20,9 +20,6 @@ const RenderProducts = () => {
 
   return (
     <React.Fragment>
-      <small className="text-muted">
-        Showing {context.products().length} products
-      </small>
       <div className="product-container">
         {allProducts.map((p) => (
           <Card

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Col } from 'reactstrap';
+import { Col, FormGroup, Input } from 'reactstrap';
 import { config } from '../../config';
 import { ProductContext } from '../../Context';
 import RenderProducts from './RenderProducts';
@@ -9,7 +9,7 @@ import loadingImage from '../../rolling.svg';
 const AllProducts = (props) => {
   // States
   const [products, setProducts] = useState([]);
-  const [pageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [loaded, setLoaded] = useState(false);
 
@@ -42,6 +42,14 @@ const AllProducts = (props) => {
     },
   };
 
+  const setResultsPerPage = (e) => {
+    if (e.target.value === '') {
+      return;
+    } else {
+      setPageSize(e.target.value);
+    }
+  };
+
   return (
     <Col>
       <div className="text-center">
@@ -52,6 +60,28 @@ const AllProducts = (props) => {
             alt="Loading spinner"
           />
         )}
+      </div>
+      <div className="d-flex flex-row justify-content-between align-items-center">
+        <small className="text-muted">Showing {products.length} products</small>
+        <div className="d-flex flex-row align-items-center justify-content-end">
+          <smalL>Results/page:</smalL>
+          <FormGroup className="my-0 ml-2">
+            <Input
+              style={{ fontSize: '12px' }}
+              className="m-0 p-0"
+              type="select"
+              name="setFilter"
+              onChange={setResultsPerPage}
+            >
+              <option value="">Per Page</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+            </Input>
+          </FormGroup>
+        </div>
       </div>
       <ProductContext.Provider value={productContext}>
         {loaded && <RenderProducts />}

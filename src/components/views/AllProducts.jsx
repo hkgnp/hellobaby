@@ -12,6 +12,7 @@ const AllProducts = (props) => {
   const [pageSize, setPageSize] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [loaded, setLoaded] = useState(false);
+  const [searchVal, setSearchVal] = useState('');
 
   // Load all posts
   useEffect(() => {
@@ -50,31 +51,34 @@ const AllProducts = (props) => {
     }
   };
 
+  const handleInput = (e) => {
+    setSearchVal(e.target.value);
+  };
+
   const handleSearch = async (e) => {
-    const response = await axios.get(`${config.BASE_URL}/api/products/search`);
-    console.log(response);
+    e.preventDefault();
+    props.history.push({
+      pathname: '/searchresults',
+      search: `?search=${searchVal}`,
+    });
   };
 
   return (
     <Col>
-      <div className="text-center">
-        {!loaded && (
-          <img
-            className="loading-image"
-            src={loadingImage}
-            alt="Loading spinner"
-          />
-        )}
-      </div>
       <Form onSubmit={handleSearch}>
         <FormGroup className="mx-0 mb-2 p-0" style={{ width: '100%' }}>
-          <Input type="text" name="search" placeholder="Search for..." />
+          <Input
+            name="searchVal"
+            type="text"
+            placeholder="Search for..."
+            onChange={handleInput}
+          />
         </FormGroup>
       </Form>
       <div className="d-flex flex-row justify-content-between align-items-center">
         <small className="text-muted">Showing {products.length} products</small>
         <div className="d-flex flex-row align-items-center justify-content-end">
-          <smalL>Results/page:</smalL>
+          <small>Results/page:</small>
           <FormGroup className="my-0 ml-2">
             <Input
               style={{ fontSize: '12px' }}
@@ -92,6 +96,15 @@ const AllProducts = (props) => {
             </Input>
           </FormGroup>
         </div>
+      </div>
+      <div className="text-center">
+        {!loaded && (
+          <img
+            className="loading-image"
+            src={loadingImage}
+            alt="Loading spinner"
+          />
+        )}
       </div>
       <ProductContext.Provider value={productContext}>
         {loaded && <RenderProducts />}

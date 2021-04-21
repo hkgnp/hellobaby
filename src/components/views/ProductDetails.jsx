@@ -117,7 +117,7 @@ const ProductDetails = (props) => {
                 className="btn-sm"
                 onClick={addToCart}
               >
-                <i class="fas fa-cart-plus"></i> Add To Cart
+                <i className="fas fa-cart-plus"></i> Add To Cart
               </Button>
             </Col>
           </Row>

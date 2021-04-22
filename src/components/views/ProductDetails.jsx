@@ -34,11 +34,15 @@ const ProductDetails = (props) => {
   }, [productId]);
 
   const addToCart = async () => {
-    if (userContext.user().username) {
+    if (userContext.user().username && product.stock !== 0) {
       await axios.get(
         `${config.BASE_URL}/api/cart/add/${userContext.user().id}/${productId}`
       );
       props.history.push('/allproducts');
+    } else if (userContext.user().username && product.stock === 0) {
+      setAddToCartError(
+        'Apologies, we have run out of this item and are re-stocking. Please check back again after a few days.'
+      );
     } else {
       setAddToCartError(
         'You must be logged in to add to cart. Please register for a new account or log in.'

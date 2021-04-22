@@ -156,8 +156,8 @@ const ProductDetails = (props) => {
             <p className="mb-0">{product.description}</p>
           </Row>
           <Row className="p-3 mx-0 mb-2 bg-white d-block">
-            <h5>Dimensions</h5>
-            <p className="mb-0">{product.size}</p>
+            <h5>Specifications</h5>
+            <p className="mb-0">{product.specs}</p>
           </Row>
           <Row className="p-3 mx-0 mb-2 bg-white d-block">
             <h5>Quantity Left</h5>

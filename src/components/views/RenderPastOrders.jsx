@@ -44,6 +44,13 @@ const RenderPastOrders = (props) => {
     })();
   }, [userContext]);
 
+  const formatDate = (date) => {
+    const dd = date.slice(8, 10);
+    const mm = date.slice(5, 7);
+    const yy = date.slice(0, 4);
+    return `${dd}-${mm}-${yy}`;
+  };
+
   const getGrandTotal = (arr) => {
     const reducer = (acc, curr) => acc + curr;
     return arr.reduce(reducer).toFixed(2);
@@ -66,8 +73,11 @@ const RenderPastOrders = (props) => {
             style={{ borderRadius: '15px', width: '100%' }}
           >
             <Col className="d-flex flex-column">
-              <h5>Order ID:</h5>
-              <small className="order-id-small">{o.order_id}</small>
+              <div className="d-flex justify-content-between align-items-center mb-2">
+                <h5 className="m-0 p-0">Order ID:</h5>
+                <h6 className="m-0 p-0">{formatDate(o.order_date)}</h6>
+              </div>
+              <small className="order-id-small mb-2">{o.order_id}</small>
               {o.orderitems.map((o) => (
                 <div key={o.id} className="d-flex flex-row mt-2">
                   <img

@@ -49,7 +49,11 @@ const SearchResults = (props) => {
                 <CardText className="mt-2 mb-0">{p.name}</CardText>
                 <CardText className="m-0 p-0">
                   {p.tags.map((t) => (
-                    <Badge style={{ backgroundColor: '#FF97B2' }} key={t.id}>
+                    <Badge
+                      style={{ backgroundColor: '#FF97B2' }}
+                      key={t.id}
+                      className="mr-1"
+                    >
                       {t.tag_name}
                     </Badge>
                   ))}
@@ -59,7 +63,7 @@ const SearchResults = (props) => {
                     <small className="text-muted"> {p.company}</small>
                   </CardText>
                   <CardText className="text-right" style={{ color: '#E1084F' }}>
-                    ${p.cost / 100}
+                    ${(p.cost / 100).toFixed(2)}
                   </CardText>
                 </div>
               </CardBody>

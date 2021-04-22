@@ -44,6 +44,11 @@ const RenderPastOrders = (props) => {
     })();
   }, [userContext]);
 
+  const getGrandTotal = (arr) => {
+    const reducer = (acc, curr) => acc + curr;
+    return arr.reduce(reducer);
+  };
+
   return (
     <React.Fragment>
       {!loaded && (
@@ -79,12 +84,18 @@ const RenderPastOrders = (props) => {
                   <div className="d-flex flex-column mt-3">
                     <strong>{o.name}</strong> x {o.quantity}
                     <br />
-                    Item Total: ${(o.quantity * o.cost) / 100}
+                    Item Total: ${((o.quantity * o.cost) / 100).toFixed(2)}
                   </div>
                 </div>
               ))}
-              <div className="d-flex justify-content-end">
-                <h4>{o.status.name}</h4>
+              <div className="d-flex justify-content-between align-items-center py-3">
+                <h4 className="m-0 p-0">
+                  $
+                  {getGrandTotal(
+                    o.orderitems.map((p) => (p.quantity * p.cost) / 100)
+                  )}
+                </h4>
+                <h4 className="m-0 p-0">{o.status.name}</h4>
               </div>
             </Col>
           </Row>

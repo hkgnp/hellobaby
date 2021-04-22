@@ -77,7 +77,7 @@ const ProductDetails = (props) => {
                 </Badge>
               ))}
               <h2 className="mt-0 mb-3" style={{ color: '#E1084F' }}>
-                ${product.cost}
+                ${(product.cost / 100).toFixed(2)}
               </h2>
               <Button
                 style={{

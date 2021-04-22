@@ -53,7 +53,7 @@ const RenderProducts = () => {
                   <small className="text-muted"> {p.company}</small>
                 </CardText>
                 <CardText className="text-right" style={{ color: '#E1084F' }}>
-                  ${p.cost / 100}
+                  ${(p.cost / 100).toFixed(2)}
                 </CardText>
               </div>
             </CardBody>

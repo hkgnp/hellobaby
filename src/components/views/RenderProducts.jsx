@@ -41,7 +41,7 @@ const RenderProducts = () => {
                 {p.tags.map((t) => (
                   <Badge
                     style={{ backgroundColor: '#FF97B2' }}
-                    className="mr-2"
+                    className="mr-1"
                     key={t.id}
                   >
                     {t.tag_name}

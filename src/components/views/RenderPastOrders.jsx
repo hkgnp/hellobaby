@@ -83,9 +83,9 @@ const RenderPastOrders = (props) => {
                   </div>
                 </div>
               ))}
-            </Col>
-            <Col className="d-flex justify-content-end align-items-center ">
-              <h4>{o.status.name}</h4>
+              <div className="d-flex justify-content-end">
+                <h4>{o.status.name}</h4>
+              </div>
             </Col>
           </Row>
         ))}

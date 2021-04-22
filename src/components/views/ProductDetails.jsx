@@ -71,7 +71,7 @@ const ProductDetails = (props) => {
                 <Badge
                   style={{ backgroundColor: '#FF97B2' }}
                   key={t.id}
-                  className="mr-2"
+                  className="mr-1"
                 >
                   {t.tag_name}
                 </Badge>

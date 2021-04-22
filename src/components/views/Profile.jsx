@@ -8,7 +8,7 @@ import RenderPastOrders from './RenderPastOrders';
 const Profile = () => {
   const userContext = useContext(UserContext);
   const [editProfile, setEditProfile] = useState(false);
-  const [userDetails, setUserDetails] = useState({});
+  const [userDetails, setUserDetails] = useState('');
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -17,12 +17,13 @@ const Profile = () => {
           notLoggedIn: 'You must be logged in to view this page.',
         })
       : setUserDetails(userContext.user());
-  }, [userContext, userDetails]);
+  }, [userContext]);
 
   const handleForm = (e) => {
     setUserDetails({
       ...userDetails,
       [e.target.name]: e.target.value,
+      role: 2,
     });
   };
 

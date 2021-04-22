@@ -39,7 +39,11 @@ const RenderProducts = () => {
               <CardText className="mt-2 mb-0">{p.name}</CardText>
               <CardText className="m-0 p-0">
                 {p.tags.map((t) => (
-                  <Badge style={{ backgroundColor: '#FF97B2' }} key={t.id}>
+                  <Badge
+                    style={{ backgroundColor: '#FF97B2' }}
+                    className="mr-2"
+                    key={t.id}
+                  >
                     {t.tag_name}
                   </Badge>
                 ))}

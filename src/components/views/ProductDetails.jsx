@@ -68,7 +68,11 @@ const ProductDetails = (props) => {
               />
               <h1>{product.name}</h1>
               {product.tags.map((t) => (
-                <Badge style={{ backgroundColor: '#FF97B2' }} key={t.id}>
+                <Badge
+                  style={{ backgroundColor: '#FF97B2' }}
+                  key={t.id}
+                  className="mr-2"
+                >
                   {t.tag_name}
                 </Badge>
               ))}

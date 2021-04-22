@@ -46,7 +46,7 @@ const RenderPastOrders = (props) => {
 
   const getGrandTotal = (arr) => {
     const reducer = (acc, curr) => acc + curr;
-    return arr.reduce(reducer);
+    return arr.reduce(reducer).toFixed(2);
   };
 
   return (

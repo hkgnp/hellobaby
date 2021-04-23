@@ -12,6 +12,7 @@ import {
 import { UserContext } from '../../Context';
 import { config } from '../../config';
 import axios from 'axios';
+import logo from '../../withname.png';
 
 const NavigationBar = () => {
   const userContext = useContext(UserContext);
@@ -40,8 +41,8 @@ const NavigationBar = () => {
     <Col className="navdiv">
       <Navbar dark expand="lg">
         <NavbarBrand href="/" style={{ fontWeight: 'bold' }}>
-          <i className="fas fa-baby"></i>
-          &nbsp;HelloBaby
+          <img src={logo} alt="Hello Baby Logo" style={{ height: '40px' }} />
+          &nbsp; Hello Baby
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -53,14 +54,16 @@ const NavigationBar = () => {
               <React.Fragment>
                 <a
                   href="/login"
-                  className="btn btn-outline-warning btn-sm my-0 mr-2"
+                  className="btn-outline-light btn btn-sm my-0 mr-2"
                 >
-                  <span className="text-warning">
-                    <strong>Login</strong>
-                  </span>
+                  Login
                 </a>
-                <a href="/register" className="btn btn-warning btn-sm my-0">
-                  <span className="text-dark">Register</span>
+                <a
+                  href="/register"
+                  className="btn btn-sm my-0"
+                  style={{ backgroundColor: '#9C6995' }}
+                >
+                  <span className="text-light">Register</span>
                 </a>
               </React.Fragment>
             )}
@@ -71,14 +74,15 @@ const NavigationBar = () => {
                 </a>
                 <a
                   href="/profile"
-                  className="btn btn-warning btn-outline-dark btn-sm my-0 mr-1"
+                  className="btn btn-sm my-0 mr-1"
+                  style={{ backgroundColor: '#9C6995' }}
                 >
-                  <span className="text-dark">
+                  <span className="text-dlightark">
                     {userContext.user().username}
                   </span>
                 </a>
                 <button
-                  className="btn-outline-dark btn-sm my-0"
+                  className="btn-outline-light btn btn-sm my-0"
                   onClick={handleLogOut}
                 >
                   Logout

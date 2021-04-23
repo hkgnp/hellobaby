@@ -78,7 +78,7 @@ const AllProducts = (props) => {
       <div className="d-flex flex-row justify-content-between align-items-center">
         <small className="text-muted">Showing {products.length} products</small>
         <div className="d-flex flex-row align-items-center justify-content-end">
-          <small>Results/page:</small>
+          <small>Results:</small>
           <FormGroup className="my-0 ml-2">
             <Input
               style={{ fontSize: '12px' }}

@@ -28,6 +28,7 @@ const NavigationBar = (props) => {
     });
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    props.location.state = '';
     window.location.href = '/allproducts';
   };
 

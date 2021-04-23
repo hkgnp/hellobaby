@@ -38,7 +38,10 @@ const ProductDetails = (props) => {
       await axios.get(
         `${config.BASE_URL}/api/cart/add/${userContext.user().id}/${productId}`
       );
-      props.history.push('/allproducts');
+      props.history.push({
+        pathname: '/allproducts',
+        state: { message: 'Item successfully added to cart!' },
+      });
     } else if (userContext.user().username && product.stock === 0) {
       setAddToCartError(
         'Apologies, we have run out of this item and are re-stocking. Please check back again after a few days.'

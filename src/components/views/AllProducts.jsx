@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Col, FormGroup, Input, Form } from 'reactstrap';
+import { Alert, Col, FormGroup, Input, Form } from 'reactstrap';
 import { config } from '../../config';
 import { ProductContext } from '../../Context';
 import RenderProducts from './RenderProducts';
@@ -13,17 +13,32 @@ const AllProducts = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loaded, setLoaded] = useState(false);
   const [searchVal, setSearchVal] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+  const [visible, setVisible] = useState(true);
 
   // Load all posts
   useEffect(() => {
+    // Set state when receiving messages from another page.
+    props.location.state
+      ? setAlertMessage(props.location.state.message)
+      : setAlertMessage('');
+
+    // Load all products
     (async () => {
       const response = await axios.get(`${config.BASE_URL}/api/products`);
       setProducts(response.data);
       setLoaded(true);
     })();
-  }, []);
 
-  //Context
+    // Show alert when receiving messages from another page and then dismissing it.
+    const onDismiss = () => setVisible(false);
+    const timer = setTimeout(() => {
+      onDismiss();
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, [props.location.state]);
+
+  // Context
   const productContext = {
     products: () => {
       return products;
@@ -65,6 +80,12 @@ const AllProducts = (props) => {
 
   return (
     <Col>
+      {alertMessage && (
+        <Alert color="info" isOpen={visible}>
+          {alertMessage}
+        </Alert>
+      )}
+
       <Form onSubmit={handleSearch}>
         <FormGroup className="mx-0 mb-2 p-0" style={{ width: '100%' }}>
           <Input

@@ -72,7 +72,9 @@ const App = () => {
       <Router>
         <Container fluid={true}>
           <Row>
-            <NavigationBar />
+            <Switch>
+              <Route component={NavigationBar} />
+            </Switch>
           </Row>
           <Row style={{ minHeight: '80vh' }}>
             <Switch>

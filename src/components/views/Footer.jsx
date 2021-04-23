@@ -16,12 +16,12 @@ const Footer = () => {
       <Col className="footer-logo">
         {/* Follow Us:
         <br /> */}
-        <i class="fab fa-twitter"></i>&nbsp;&nbsp;&nbsp;
-        <i class="fab fa-facebook"></i>
-        &nbsp;&nbsp;&nbsp;<i class="fab fa-instagram"></i>&nbsp;&nbsp;&nbsp;
-        <i class="fab fa-pinterest-p"></i>&nbsp;&nbsp;&nbsp;
-        <i class="fab fa-tiktok"></i>&nbsp;&nbsp;&nbsp;
-        <i class="fab fa-youtube"></i>
+        <i className="fab fa-twitter"></i>&nbsp;&nbsp;&nbsp;
+        <i className="fab fa-facebook"></i>
+        &nbsp;&nbsp;&nbsp;<i className="fab fa-instagram"></i>&nbsp;&nbsp;&nbsp;
+        <i className="fab fa-pinterest-p"></i>&nbsp;&nbsp;&nbsp;
+        <i className="fab fa-tiktok"></i>&nbsp;&nbsp;&nbsp;
+        <i className="fab fa-youtube"></i>
       </Col>
     </Col>
   );

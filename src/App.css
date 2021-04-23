@@ -135,7 +135,11 @@ h4 {
 }
 
 .footer-text {
-  font-size: 12px;
+  font-size: 14px;
+}
+
+.footer-logo {
+  font-size: 25px;
 }
 
 @media screen and (max-width: 425px) {

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ProductContext } from '../../Context';
 import { Paginate, ManagePagination } from '../common/ManagePagination';
-import { Card, CardImg, CardText, CardBody, Badge } from 'reactstrap';
+import Product from '../common/Product';
 
 const RenderProducts = () => {
   const context = useContext(ProductContext);
@@ -22,42 +22,16 @@ const RenderProducts = () => {
     <React.Fragment>
       <div className="product-container">
         {allProducts.map((p) => (
-          <Card
+          <Product
             key={p.id}
-            onClick={goToProduct}
-            value={p.id}
-            className="mb-2 d-flex"
-          >
-            <CardImg
-              top
-              height="70%"
-              src={`${p.img_url}`}
-              alt={p.name}
-              className="card-image-details"
-            />
-            <CardBody className="mb-0" onClick={goToProduct} value={p.id}>
-              <CardText className="mt-2 mb-0">{p.name}</CardText>
-              <CardText className="m-0 p-0">
-                {p.tags.map((t) => (
-                  <Badge
-                    style={{ backgroundColor: '#FF97B2' }}
-                    className="mr-1"
-                    key={t.id}
-                  >
-                    {t.tag_name}
-                  </Badge>
-                ))}
-              </CardText>
-              <div className="d-flex justify-content-between">
-                <CardText>
-                  <small className="text-muted"> {p.company}</small>
-                </CardText>
-                <CardText className="text-right" style={{ color: '#E1084F' }}>
-                  ${(p.cost / 100).toFixed(2)}
-                </CardText>
-              </div>
-            </CardBody>
-          </Card>
+            id={p.id}
+            img_url={p.img_url}
+            name={p.name}
+            tags={p.tags}
+            company={p.company}
+            cost={p.cost}
+            goToProduct={goToProduct}
+          />
         ))}
       </div>
       <ManagePagination />

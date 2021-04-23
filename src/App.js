@@ -21,6 +21,7 @@ import ProductDetails from './components/views/ProductDetails';
 import SearchResults from './components/views/SearchResults';
 import Checkout from './components/views/Checkout';
 import CheckoutSuccess from './components/views/CheckoutSuccess';
+import CheckoutError from './components/views/CheckoutError';
 import Footer from './components/views/Footer';
 import Profile from './components/views/Profile';
 
@@ -85,6 +86,7 @@ const App = () => {
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/checkout" component={Checkout} />
+              <Route exact path="/checkout/error" component={CheckoutError} />
               <Route
                 exact
                 path="/checkout/success"

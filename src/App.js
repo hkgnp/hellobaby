@@ -19,6 +19,7 @@ import Login from './components/views/Login';
 import Register from './components/views/Register';
 import ProductDetails from './components/views/ProductDetails';
 import SearchResults from './components/views/SearchResults';
+import FilterResults from './components/views/FilterResults';
 import Checkout from './components/views/Checkout';
 import CheckoutSuccess from './components/views/CheckoutSuccess';
 import CheckoutError from './components/views/CheckoutError';
@@ -80,6 +81,7 @@ const App = () => {
               <Redirect exact path from="/" to="/allproducts" />
               <Route path="/product/:productId" component={ProductDetails} />
               <Route path="/searchresults" component={SearchResults} />
+              <Route path="/filterresults" component={FilterResults} />
               <Route exact path="/about" component={About} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />

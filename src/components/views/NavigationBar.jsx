@@ -5,8 +5,10 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
+  NavItem,
   NavbarBrand,
   Nav,
+  NavLink,
   NavbarText,
 } from 'reactstrap';
 import { UserContext } from '../../Context';
@@ -14,7 +16,7 @@ import { config } from '../../config';
 import axios from 'axios';
 import logo from '../../withname.png';
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
   const userContext = useContext(UserContext);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -37,6 +39,14 @@ const NavigationBar = () => {
     }
   };
 
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    props.history.push({
+      pathname: '/filterresults',
+      search: `?filter=${e.target.name}`,
+    });
+  };
+
   return (
     <Col className="navdiv">
       <Navbar dark expand="lg">
@@ -48,6 +58,16 @@ const NavigationBar = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             {/* Placeholder for NavItem */}
+            <NavItem>
+              <NavLink name="2" onClick={handleSearch}>
+                Travel
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink name="1" onClick={handleSearch}>
+                Herbs
+              </NavLink>
+            </NavItem>
           </Nav>
           <NavbarText>
             {gotToken() || (

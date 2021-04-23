@@ -15,7 +15,7 @@ h4 {
 
 .page-item.active .page-link {
   z-index: 3;
-  color: #fff;
+  color: #fff !important;
   background-color: deeppink !important;
   border-color: deeppink !important;
 }

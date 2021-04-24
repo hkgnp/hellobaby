@@ -63,6 +63,7 @@ const AllProducts = (props) => {
       return;
     } else {
       setPageSize(e.target.value);
+      setCurrentPage(1);
     }
   };
 

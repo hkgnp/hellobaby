@@ -70,14 +70,18 @@ const RenderPastOrders = (props) => {
           <Row
             key={o.id}
             className="bg-light mb-2 ml-0 p-2"
-            style={{ borderRadius: '15px', width: '100%' }}
+            style={{
+              borderRadius: '15px',
+              width: '100%',
+              border: '0.5px dashed purple',
+            }}
           >
             <Col className="d-flex flex-column">
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <h5 className="m-0 p-0">Order ID:</h5>
+              <div className="d-flex justify-content-between align-items-center">
+                <h5 className="mx-0 mt-3 p-0">Order ID:</h5>
                 <h6 className="m-0 p-0">{formatDate(o.order_date)}</h6>
               </div>
-              <small className="order-id-small mb-2">{o.order_id}</small>
+              <small className="order-id-small mt-0 mb-2">{o.order_id}</small>
               {o.orderitems.map((o) => (
                 <div key={o.id} className="d-flex flex-row mt-2">
                   <img

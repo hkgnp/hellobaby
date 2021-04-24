@@ -142,7 +142,7 @@ const Cart = () => {
                 />
               </Col>
               <Col className="cart-display">
-                <h4 className="m-0">{p.products.name}</h4>
+                <h6 className="m-0">{p.products.name}</h6>
                 <p className="m-0" style={{ color: '#E1084F' }}>
                   ${p.products.cost / 100}
                 </p>

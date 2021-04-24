@@ -13,17 +13,23 @@ h4 {
   margin-top: 1rem !important;
 }
 
-.page-item.active .page-link {
+.page-item.active > .page-link {
   z-index: 3;
   color: #fff !important;
   background-color: deeppink !important;
   border-color: deeppink !important;
 }
 
-.page-item:last-child .page-link {
+.page-item:last-child > .page-link {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
-  color: deeppink;
+  color: deeppink !important;
+}
+
+.page-item > .page-link {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  color: deeppink !important;
 }
 
 .loading-image {

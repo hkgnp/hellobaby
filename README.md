@@ -21,6 +21,7 @@ This app consists of a frontend shopping cart and a backend system for managing 
    - When a customer checks out their cart, an order will be created and status set to "Pending Payment".
    - After checkout is completed, backend is notified (via Stripe webhook), order status is immediately changed to "Processing".
    - Vendor may change the order status after the order is shipped or delivered.
+   - This status will be immediately reflected in the customer's "Order History" (on their profile page).
 5. Testing a shopping cart checkout (via backend).
 6. Registering of a new admin account.
 
@@ -52,20 +53,39 @@ This app consists of a frontend shopping cart and a backend system for managing 
 
 # Project Summary
 
-This web application is to be used by Medical Social Workers (MSWs) to contribute resources that may be helpful to their colleagues within or outside their organisation. It is a community driven platform where contributors only need to register to contribute new resources, but registration is not needed to review resources.
+HelloBaby is a secure, one-stop place for new mummies and daddies to buy all that they need to prepare for their newborn. From confinent nanny services, to herbs needed, to mummy and babycare, as well as travel systems, HelloBaby is the first and only place that you need to go to welcome your previous newborn!
 
 # Strategy
 
-It is important for MSWs to be kept updated on the latest health and social care resources that can be used to help patients. Often time, MSWs will need to either maintain their own database of resources, or to frequently ask around whenever their patient needs something that they are not familiar with. Depending on who is asked, there may be different responses. And because the landscape changes quickly, information can get outdated by the time you need it.
-
-This application hopes to be able to create a consolidate pool of updated resources for everyone to reference, and for MSWs to be able to also contribute reviews to keep the data refreshed.
+There are many online mother and babycare shops available. There are dedicated online shops (e.g. Mothercare) or you can navigate to popular shopping platforms like Lazada to purchase such items. However, there is currently no _curated_ list of items **and** services that parents can browse. HelloBaby hopes to fill this gap, and build a trusted brand so that this will be the only place that parents need to visit when they are going to welcome a newborn.
 
 ## User Stories
 
-1. As a MSW, I want to be able to look for relevant social and healthcare resources using keywords.
-2. As a MSW, I want to be able to contribute new resources that I have come across and provide useful details about them, including upload an image related to the resource (e.g. a flyer).
-3. As a MSW, I want to be able to leave reviews of resources that I have used for my patients, to better advise other MSWs who are thinking of using them.
-4. As a user, I want to be able to edit the resources that I or my fellow healthcare professionals have contributed.
+As a vendor:
+
+1. I want to be able to manage (create, view, update and delete) the products that I am selling.
+2. I want to add in new categories and tags that are currently not in the system, so I do not need a system administrator to do it.
+3. I want to be able to keep track of the orders that come in, so that I:
+   - Ship out only orders that have been paid;
+   - Mark orders as delivered when I'm notified by my logistics company;
+   - Can keep my customer updated on his order status, without him/ her needing to contact me.
+   - But if there is a need to, check the specific items related to each order, when they call me.
+   - Delete orders when needed.
+4. I want to be able to test that my shopping cart and checkout system is working properly.
+
+As a customer:
+
+1. I want to browse a list of products that the shop offers.
+2. I want to be able to do a search of the products available.
+3. I want to change the number of results that I can view on the page, so that I can better navigate.
+4. I want to be able to filter the products by categories.
+5. I want to add products I like to my shopping cart for purchase.
+6. I want to be able to increase or decrease the quantity of each item bought in my shopping cart, as well as remove each item.
+7. I want to be able to checkout the items in my shopping cart, and see an order confirmation after payment is completed. I also want to be able to print out this order confirmation for record keeping purposes.
+8. I want to be able to share products I like with my friends through Twitter, Facebook and Whatsapp.
+9. I want to be able to see a list of my past orders and specific items in those orders.
+10. I want to be able to update my profile, such as my name, address, and contact.
+11. I want to be able to log out so that other users of my device cannot purchase items. However, when I log back in on the same device or another device, items that I've already added to my shopping cart should be there.
 
 # Scope
 

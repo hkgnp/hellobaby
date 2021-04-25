@@ -100,6 +100,27 @@ The app must be able to perform the following functions:
 - To encourage resources to be vetted as much as possible, allow non-registered users to contribute reviews.
 - Each resource should contain critical information, including a map to allow easy location of resource.
 
+# Structure
+
+### ER-diagram
+
+![image](./screenshots/erdiagram.png)
+
+## Sitemap
+
+- Shopfront
+  - Search
+  - Product details
+    - Share on social media
+    - Add to cart
+- User
+  - Cart
+    - Checkout
+      - Order confirmation
+  - Profile
+    - Update Profile
+    - Order history
+
 # Skeleton
 
 ### Frontend

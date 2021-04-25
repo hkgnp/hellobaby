@@ -102,37 +102,22 @@ The app must be able to perform the following functions:
 
 # Structure
 
-### Dynamic search
-
-Dynamic search for resources using either the Title, Description, Address or Postal Code. Users can also adjust the number of results that they want to see in one page.
-
-### Filter resources
-
-Filter resources by their category. Users can also adjust the number of results that they want to see in one page.
-
-### Post reviews
-
-Post reviews of resources for other users to decide on the suitability for their patients.
-
-### Register / Login / Log out
-
-Register for an account to contribute or edit resources. User can login and a JWT will be stored on the browser until the user logs out, where it will be deleted.
-
-### User dashboard
-
-Users who have registered and logged in, can access their Dashboard where they can change their display name and username.
-
-### Contribute resource / Edit resource
-
-Registered users can log in to contribute a new resource or edit an existing resource (contributed by themselves or others). They will also be able to upload a picture from their device to provide more details about the resource.
-
 # Skeleton
 
-![image](./readmescreenshots/dashboard.png)
-![image](./readmescreenshots/posts.png)
-![image](./readmescreenshots/contributeresource.png)
-![image](./readmescreenshots/resource.png)
-![image](./readmescreenshots/hashpassword.png)
+### Frontend
+
+![image](./screenshots/shopfront.png)
+![image](./screenshots/cart.png)
+![image](./screenshots/item.png)
+![image](./screenshots/orderhistory.png)
+![image](./screenshots/register.png)
+
+### Backend
+
+![image](./screenshots/allproducts.png)
+![image](./screenshots/allorders.png)
+![image](./screenshots/orderitems.png)
+![image](./screenshots/create.png)
 
 # Code style
 
@@ -141,13 +126,19 @@ Code is formatted using Prettier (installed as an extension in VS Code).
 
 # Deployment
 
-`msw-keeposted` is deployed to Netlify. The API for resources, reviews and user information is hostedon Heroku. MongoDB and Amazon S3 are used for storing text information and images respectively. API details can be found at [https://github.com/hkgnp/msw-keeposted-api](https://github.com/hkgnp/msw-keeposted-api)
+HelloBaby's shopfront is deployed to Netlify. Its backend is deployed to Heroku. The SQL database used is Postgres as supplied by Heroku.
 
-### Deploying `msw-keeposted`
+### Deploying the shopfront
 
 After cloning the repository, ensure that the folder and files are in the root directory (e.g. same directory as your .git directory). You may then proceed to log in to your [Netlify](https://www.netlify.com) and deploy a new site from Github. Select your Github directory and Netlify will proceed to deploy your site.
 
-### Deploying `msw-keeposted-api`
+Ensure the following is set up in the Environment Variables within your Netlify site's settings.
+
+```
+REACT_APP_STRIPE_SECRET_KEY
+```
+
+### Deploying the backend
 
 After cloning the repository, ensure that the folder and files are in the root directory (e.g. same directory as your .git directory). Using [Heroku's CLI tool](https://devcenter.heroku.com/articles/heroku-cli), proceed to use your terminal to link your repository with Heroku. Before pushing to Heroku (using `git push heroku master` OR `git push heroku <branch>`), ensure that the following is done:
 
@@ -162,10 +153,23 @@ After cloning the repository, ensure that the folder and files are in the root d
 ```
 
 - After creaing the app on Heroku using `heroku create`, set up your **config variables** in the settings section of your application in Heroku. It should contain the variables for the following:
-  - S3_ACCESS_KEY (for uploading images to Amazon S3)
-  - S3_ACCESS_SECRET (for uploading images to Amazon S3)
-  - MONGO_URL (for CRUD in MongoDB)
-  - TOKEN_SECRET (for bcrypt to hash users' passwords)
+
+```
+UPLOADCARE_PUBLIC_KEY
+DB_DRIVER
+DB_USER
+DB_PASSWORD
+DB_DATABASE
+DB_HOST
+SESSION_SECRET_KEY
+STRIPE_PUBLISHABLE_KEY
+STRIPE_SECRET_KEY
+STRIPE_SUCCESS_URL
+STRIPE_ERROR_URL
+STRIPE_ENDPOINT_SECRET
+TOKEN_SECRET
+REFRESH_TOKEN_SECRET
+```
 
 For further details, please refer to the awesome [guide](https://devcenter.heroku.com/articles/deploying-nodejs) on Heroku's website.
 
@@ -173,51 +177,57 @@ For further details, please refer to the awesome [guide](https://devcenter.herok
 
 This app is made only possible thanks to the following technologies:
 
-- [Github](https://www.github.com/)
-- [Node](https://nodejs.org/en/)
-- [React](https://reactjs.org/)
-- [bcrypt](https://www.npmjs.com/package/bcrypt)
-- [joi-browser](https://www.npmjs.com/package/joi-browser)
-- [reactstrap](https://reactstrap.github.io/)
-- [React Router](https://reactrouter.com/)
-- [Express](https://expressjs.com/)
-- [Leaflet](https://leafletjs.com/)
-- [Leaflet Default Icon Compatibility](https://github.com/ghybs/leaflet-defaulticon-compatibility)
-- [Bootstrap](https://getbootstrap.com/)
-- [Google Fonts](https://fonts.google.com/)
-- [Font Awesome](https://fontawesome.com/)
-- [MongoDB](https://www.mongodb.com/cloud/atlas)
-- [Amazon S3](https://aws.amazon.com/s3/)
-- [Heroku](https://www.heroku.com)
-- [Axios](https://github.com/axios/axios)
-- [Unsplash](https://unsplash.com)
-- [JWT](https://jwt.io/)
+Backend:
+
+- body-parser
+- bookshelf
+- uploadcare
+- connect-flash
+- cors
+- csurf
+- db-migrate
+- db-migrate-mysql
+- db-migrate-pg
+- dotenv
+- express
+- express-session
+- forms
+- handlebars-helpers
+- hbs
+- jsonwebtoken
+- knex
+- moment
+- mysql2
+- pg
+- session-file-store
+- stripe
+- wax-on
+
+Frontend:
+
+- stripe
+- axios
+- bootstrap
+- joi
+- react
+- react-dom
+- react-router-dom
+- react-scripts
+- react-share
+- reactstrap
+
 - Built with [VS Code](https://code.visualstudio.com/)
-
-# API References
-
-And it is also made only possible thanks to the painstaking work done by the following organisations:
-
-- [OneMap](https://app.swaggerhub.com/apis/onemap-sg/new-onemap-api/1.0.3)
-- [Open Street Map](https://www.openstreetmap.org/)
-- [Mapbox](https://www.mapbox.com/)
 
 # Acknowledgments
 
 - Mr Paul Chor
 - Mr Alexander Yan
-- Mr Shun
-- Mr Ace Liang
-- Mr Christopher Seow
 - My wonderful classmates who have been part of this journey together:
   - Hidayah
   - Howard
-  - Julius (thank you for the API idea)
-  - Ryan
+  - Julius
   - Ying Ru
-- The following guides that helped me understand React further:
-  - [To Handle Authentication with Node JS, Express, Mongo, JWT](https://codeburst.io/to-handle-authentication-with-node-js-express-mongo-jwt-7e55f5818181)
-  - [Stack Overflow: how to implement Pagination in reactJS](https://stackoverflow.com/questions/40232847/how-to-implement-pagination-in-reactjs)
+  - BIG THANKS to **Ryan** for helping me create the beautiful HelloBaby logo
 
 # Testing
 

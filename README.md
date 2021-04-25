@@ -214,7 +214,7 @@ Frontend:
 - react-share
 - reactstrap
 
-- Built with [VS Code](https://code.visualstudio.com/)
+Built with [VS Code](https://code.visualstudio.com/)
 
 # Acknowledgments
 

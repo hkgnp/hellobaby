@@ -226,8 +226,3 @@ Built with [VS Code](https://code.visualstudio.com/)
   - Julius
   - Ying Ru
   - BIG THANKS to **Ryan** for helping me create the beautiful HelloBaby logo
-
-# Testing
-
-| Category | Cases | Expected Outcome |
-| -------- | ----- | ---------------- |

@@ -144,7 +144,7 @@ const Cart = () => {
               <Col className="cart-display">
                 <h6 className="m-0">{p.products.name}</h6>
                 <p className="m-0" style={{ color: '#E1084F' }}>
-                  ${p.products.cost / 100}
+                  ${(p.products.cost / 100).toFixed(2)}
                 </p>
                 <div
                   className="form-group col-4 p-0 d-flex m-0"

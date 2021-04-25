@@ -69,6 +69,26 @@ const NavigationBar = (props) => {
                 Herbs
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink name="3" onClick={handleSearch}>
+                Mealtime
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink name="4" onClick={handleSearch}>
+                BabyCare
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink name="7" onClick={handleSearch}>
+                Services
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink name="8" onClick={handleSearch}>
+                MummyCare
+              </NavLink>
+            </NavItem>
           </Nav>
           <NavbarText>
             {gotToken() || (

@@ -113,7 +113,7 @@ const Cart = () => {
 
   const getTotalCost = () => {
     let totalCost = cart.allItems.map(
-      (p) => (p.products.cost * p.quantity) / 100
+      (p) => (p.products.cost / 100) * p.quantity
     );
     return totalCost.reduce((a, b) => a + b, 0);
   };

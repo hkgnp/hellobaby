@@ -1,7 +1,7 @@
 # How to Use
 
 - HelloBaby can be accessed at [https://focused-panini-18207b.netlify.app/](https://focused-panini-18207b.netlify.app/).
-- HelloBaby's backend (built on expressjs) can be accessed at [https://ancient-fortress-09431.herokuapp.com/](https://ancient-fortress-09431.herokuapp.com/). APIs are also stored here.
+- HelloBaby's backend (built on expressjs) can be accessed at [https://ancient-fortress-09431.herokuapp.com/](https://hello-baby-shopping.herokuapp.com/). APIs are also stored here.
 
 This app consists of a frontend shopping cart and a backend system for managing products in the "shop". A summary of its functions are below:
 
